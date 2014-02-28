@@ -33,7 +33,6 @@ public class Gen1Script : MonoBehaviour {
 
 		StartCoroutine(talk());
 		StartCoroutine(button());
-		
 	}
 
 	// Show the cursor if the player can input
@@ -57,6 +56,7 @@ public class Gen1Script : MonoBehaviour {
 		}
 	}
 
+	// Adds a player choice to player choices, then fills playerInputButtons with the new choice
 	void addChoice(string choiceString, int whereTo){
 		GameObject newChoice = (GameObject)Instantiate(Resources.Load("PlayerChoice"));
 		newChoice.transform.parent = transform.parent.FindChild("PlayerChoices");
@@ -69,6 +69,7 @@ public class Gen1Script : MonoBehaviour {
 		FillChoice();
 	}
 
+	// Detects player input on a player choice.  Moves the textIndex to the point specified by whereTo
 	void choose(){
 		mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
 		if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
@@ -79,7 +80,8 @@ public class Gen1Script : MonoBehaviour {
 			}
 		}		
 	}
-	
+
+	// Removes all player choices from PlayerChoices
 	void removeChoices(){
 		Destroy(transform.parent.FindChild("PlayerChoices").gameObject);
 		GameObject newChoices = (GameObject)Instantiate(Resources.Load("PlayerChoices"));
@@ -113,29 +115,30 @@ public class Gen1Script : MonoBehaviour {
 			// Checking button collision updating the text index accordingly
 			if(Physics.Raycast(mouseRay, out hit,50)){
 				if(hit.collider.name == "button"){
+					// make button glow when selected
 					if(continueButton.gameObject.GetComponent<glow>() == null){
 						continueButton.gameObject.AddComponent<glow>();
 					}
 					onButton = true;
 				}
 			}else{
+				// Remove glow when not selected
 				if(continueButton.gameObject.GetComponent<glow>() != null){
 					continueButton.gameObject.GetComponent<glow>().noMore();
 				}
 				onButton = false;
 			}
-			if(onButton && canInput){
-				if(Input.GetMouseButtonDown(0)){
-					textIndex++;
-				}
+			// If you click the button when you're allowed, you may continue
+			if(onButton && canInput && Input.GetMouseButtonDown(0)){
+				textIndex++;
 			}
 
 			// Button rotates if it's enabled
 			continueButton.enabled = canInput;
-
 			if(continueButton.enabled){
 				continueButton.transform.Rotate(0,1,0);
 			}
+
 			yield return null;
 		}
 	}
@@ -147,14 +150,12 @@ public class Gen1Script : MonoBehaviour {
 			oldMessage = text;
 			myText.text = "";
 			for (int i = 0; i < text.Length; i++) {
-				myText.text += text [i];
+				myText.text += text[i];
 				yield return null;
 			}
 		}
 		yield return null;
 	}
-
-
 
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
@@ -165,7 +166,6 @@ public class Gen1Script : MonoBehaviour {
 				textIndex++;
 			}
 
-			// Ray Casting variables for clicking choice boxes
 
 			// Conversation Flow
 			// The text Index tells you where you are in the narative
@@ -176,8 +176,8 @@ public class Gen1Script : MonoBehaviour {
 				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
 					                                   "You must be the new intern, what was your name?"));
 				yield return new WaitForSeconds(2f);
-				addChoice("I'd Rather Not Say", 2);
-				addChoice("The Name's <PLAYER NAME>", 2);
+				//addChoice("I'd Rather Not Say", 2);
+				//addChoice("The Name's <PLAYER NAME>", 2);
 				addChoice("*smoke bomb*", 2);
 				textIndex++;
 				break;

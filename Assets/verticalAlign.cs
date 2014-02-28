@@ -15,11 +15,13 @@ public class verticalAlign : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(size != transform.childCount){
-			size = transform.childCount;
+		//size = transform.childCount;
+		//if(size != transform.childCount){
+		//	print("UPDATING SIZE");
+		//	size = transform.childCount;
 			updateArray();
 			align();
-		}
+		//}
 	}
 
 	void updateArray(){
@@ -41,8 +43,9 @@ public class verticalAlign : MonoBehaviour {
 
 		for(int i = 0; i < choices.Length; i++){
 			pos -= choices[i].FindChild("ChoiceBackground").localScale.y * .5f;
+			choices[i].transform.position = choices[i].transform.parent.transform.position;
 			choices[i].Translate(new Vector3(0, pos, 0));
-			pos -= buffer + choices[i].localScale.y * .5f;
+			pos -= (choices[i].localScale.y * .5f) + buffer;
 		}
 	}
 }
