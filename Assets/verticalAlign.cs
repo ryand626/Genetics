@@ -9,7 +9,7 @@ public class verticalAlign : MonoBehaviour {
 
 	void Start () {
 		size = transform.childCount;
-		buffer = .5f;
+		buffer = 0f;
 		updateArray();
 		align();
 	}

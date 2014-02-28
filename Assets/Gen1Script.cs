@@ -41,6 +41,13 @@ public class Gen1Script : MonoBehaviour {
 			Screen.showCursor = true;
 		}
 	}
+
+	//Updates the Face of the person
+	void changeFace(string ID){
+		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().enabled = (ID != "hide");
+		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().material = (Material)Resources.Load(ID);
+	}
+	
 	// Update the playerInputButtons array by filling it with player choice objects
 	void FillChoice(){
 		playerInputButtons = new GameObject[transform.parent.FindChild("PlayerChoices").childCount];
@@ -48,6 +55,27 @@ public class Gen1Script : MonoBehaviour {
 			playerInputButtons[i] = transform.parent.FindChild("PlayerChoices").GetChild(i).gameObject;
 			print("player input buttons: " + playerInputButtons[i].ToString());
 		}
+	}
+
+	void addChoice(string choiceString){
+		GameObject newChoice = (GameObject)Instantiate(Resources.Load("PlayerChoice"));
+		newChoice.transform.parent = transform.parent.FindChild("PlayerChoices");
+		newChoice.transform.FindChild("ChoiceText").GetComponent<TextMesh>().text = choiceString;
+		newChoice.transform.position = newChoice.transform.parent.position;
+		FillChoice();
+	}
+
+	void removeChoices(){
+		Destroy(transform.parent.FindChild("PlayerChoices").gameObject);
+		GameObject newChoices = (GameObject)Instantiate(Resources.Load("PlayerChoices"));
+
+		newChoices.name = "PlayerChoices";
+		newChoices.transform.parent = transform.parent;
+		newChoices.transform.position = newChoices.transform.parent.position;
+		newChoices.transform.Translate(6f,-3.5f,7f);
+
+		FillChoice();
+		togglePlayerInput(false);
 	}
 	
 	//Toggles visibility of plyer choice buttons
@@ -59,7 +87,7 @@ public class Gen1Script : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	// Continue button at bottom of screen
 	IEnumerator button(){
 		RaycastHit hit;
@@ -109,50 +137,56 @@ public class Gen1Script : MonoBehaviour {
 				yield return null;
 			}
 		}
-		//oldMessage = text;
-		
 		yield return null;
 	}
 
-	//Updates the Face of the person
-	void changeFace(string ID){
-		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().enabled = (ID != "hide");
-		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().material = (Material)Resources.Load(ID);
-	}
+
 
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
 		TextMesh choice1 = playerInputButtons[0].transform.FindChild("ChoiceText").GetComponent<TextMesh>();
 
 		while(true){
+			// Return can also advance narative
 			if(Input.GetKeyDown(KeyCode.Return) && canInput){
 				textIndex++;
 			}
+
+			// Ray Casting variables for clicking choice boxes
 			RaycastHit hit;
 			mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
 
+			// Conversation Flow
+			// The text Index tells you where you are in the narative
 			switch(textIndex){
 			case 0:
 				canInput = false;
 				changeFace("MossGUI1");
+
 				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
-					"You must be the new intern, what was your name?"));
+					                                   "You must be the new intern, what was your name?"));
 				yield return new WaitForSeconds(2f);
+				addChoice("FUCK YEAH");
+				addChoice("lolwut");
+				addChoice("noooooo");
 				textIndex++;
 				break;
+
 			case 1:
 				togglePlayerInput(true);
 				changeFace("hide");
 				choice1.text = "MY NAME IS MICHAEL WESTON\n....I USED TO BE A SPY";
+
 				if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
 					print(hit.collider.name);
-					if(hit.collider.name=="ChoiceBackground"){
-						togglePlayerInput(false);
+					if(hit.collider.name == "ChoiceBackground"){
+						removeChoices();
 						textIndex++;
 						canInput = true;
 					}
 				}
 				break;
+			
 			case 2:
 				yield return StartCoroutine(textScroll("Anyway's it's time you spent some time \nwith professor Moss"));
 				break;
