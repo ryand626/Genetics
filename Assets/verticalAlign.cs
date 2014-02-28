@@ -2,12 +2,14 @@
 using System.Collections;
 
 public class verticalAlign : MonoBehaviour {
-	Transform [] choices;
+	public Transform [] choices;
 	float total;
 	public float buffer;
+	public float ScaleFactor;
 	int size;
 
 	void Start () {
+		ScaleFactor = .7f;
 		size = transform.childCount;
 		buffer = 0f;
 		updateArray();
@@ -15,13 +17,8 @@ public class verticalAlign : MonoBehaviour {
 	}
 	
 	void Update () {
-		//size = transform.childCount;
-		//if(size != transform.childCount){
-		//	print("UPDATING SIZE");
-		//	size = transform.childCount;
-			updateArray();
-			align();
-		//}
+		updateArray();
+		align();
 	}
 
 	void updateArray(){
@@ -31,21 +28,21 @@ public class verticalAlign : MonoBehaviour {
 		}
 	}
 
+	// TODO: FIX THIS
 	void align(){
 		total = 0;
 		for(int i = 0; i < choices.Length;i++){
-			total += choices[i].FindChild("ChoiceBackground").localScale.y;
+			total += choices[i].FindChild("ChoiceBackground").lossyScale.y * 2f;
 			total += buffer;
-			print("TOTAL IS: " + total);
 		}
 		total -= buffer;
-		float pos = total / 2f;
+		float pos = total * ScaleFactor / 2f;
+		//print("POS: " + pos);
 
 		for(int i = 0; i < choices.Length; i++){
-			pos -= choices[i].FindChild("ChoiceBackground").localScale.y * .5f;
-			choices[i].transform.position = choices[i].transform.parent.transform.position;
-			choices[i].Translate(new Vector3(0, pos, 0));
-			pos -= (choices[i].localScale.y * .5f) + buffer;
+			pos -= choices[i].FindChild("ChoiceBackground").lossyScale.y * ScaleFactor;
+			choices[i].transform.position = new Vector3(transform.position.x,transform.position.y + pos, transform.position.z);
+			pos -= ((choices[i].lossyScale.y) + buffer) * ScaleFactor;
 		}
 	}
 }

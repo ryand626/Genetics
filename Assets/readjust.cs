@@ -2,35 +2,35 @@
 using System.Collections;
 
 public class readjust : MonoBehaviour {
+	// Object references
 	Transform background;
 	Transform myText;
 
-	int xSize,ySize;
+	// box constraints
+	private int stringHeight;
+	private int stringLength;
 
-	public int stringLength;
-	public float textSize;
+	// Scaling Factors
+	public float boxScale;
+	public int yScale;
 
 	// Where the choice links to
 	public int whereTo;
-
-
+	
 	void Start () {
+		yScale = 3;
 		background = transform.FindChild("ChoiceBackground");
 		myText = transform.FindChild("ChoiceText");
-		stringLength = 12;
-		textSize = .5f;
+		boxScale = .25f;
 	}
-	
-	// Update is called once per frame
+
+	// Scale Choice Background
 	void Update () {
-
-		xSize = Mathf.FloorToInt(myText.GetComponent<TextMesh>().text.Length % stringLength);
-		ySize = 2 + Mathf.FloorToInt(myText.GetComponent<TextMesh>().text.Length / stringLength);
-
-		print("X: " + xSize + " Y: " + ySize);
-//		background.localScale = new Vector3(stringLength * textSize, 
-//		                                    ySize * textSize,
-//		                                    background.localScale.z);
-//
+		stringLength = transform.parent.parent.FindChild("Text").gameObject.GetComponent<Gen1Script>().choiceTextWidth;
+		print ("STRING LENGTH: " + stringLength);
+		stringHeight = yScale * (2 + Mathf.FloorToInt(myText.GetComponent<TextMesh>().text.Length / stringLength));
+		background.localScale = new Vector3(stringLength * boxScale, 
+		                                    stringHeight * boxScale,
+		                                    background.localScale.z);
 	}
 }

@@ -21,9 +21,16 @@ public class Gen1Script : MonoBehaviour {
 	// Player Input choice buttons
 	private GameObject [] playerInputButtons;
 
+	// Text widths
+	public int BoxTextWidth;
+	public int choiceTextWidth;
+
 		
 	// Initialization
 	void Start () {
+		BoxTextWidth = 60;
+		choiceTextWidth = 20;
+
 		FillChoice();
 		oldMessage = "-";
 		
@@ -47,7 +54,7 @@ public class Gen1Script : MonoBehaviour {
 		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().enabled = (ID != "hide");
 		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().material = (Material)Resources.Load(ID);
 	}
-	
+
 	// Update the playerInputButtons array by filling it with player choice objects
 	void FillChoice(){
 		playerInputButtons = new GameObject[transform.parent.FindChild("PlayerChoices").childCount];
@@ -58,6 +65,8 @@ public class Gen1Script : MonoBehaviour {
 
 	// Adds a player choice to player choices, then fills playerInputButtons with the new choice
 	void addChoice(string choiceString, int whereTo){
+		choiceString = addNewLine(choiceTextWidth, choiceString);
+
 		GameObject newChoice = (GameObject)Instantiate(Resources.Load("PlayerChoice"));
 		newChoice.transform.parent = transform.parent.FindChild("PlayerChoices");
 		newChoice.transform.FindChild("ChoiceText").GetComponent<TextMesh>().text = choiceString;
@@ -73,7 +82,6 @@ public class Gen1Script : MonoBehaviour {
 	void choose(){
 		mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
 		if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
-			print("COLLIDER: " + hit.collider.name);
 			if(hit.collider.name == "ChoiceBackground"){
 				textIndex = hit.collider.transform.parent.GetComponent<readjust>().whereTo;
 				removeChoices();
@@ -142,6 +150,27 @@ public class Gen1Script : MonoBehaviour {
 			yield return null;
 		}
 	}
+	string addNewLine(int wrapFactor, string oldString){
+		string newString = "";
+		bool insertNewline = false;
+
+		int buffer = 0;
+		// Need to add first character manually to avoid text wrapping after first word
+		newString += oldString[0];
+
+		for(int i = 1; i < oldString.Length; i++){
+			newString += oldString[i];
+			if(i % wrapFactor == 0){
+				insertNewline = true;
+			}
+			if(insertNewline && (oldString[i] == ' ')){
+				newString += '\n';
+				insertNewline = false;
+			}
+		}
+		return newString;
+	}
+
 
 	// Gives a text scrolling effect
 	IEnumerator textScroll(string text){
@@ -173,12 +202,12 @@ public class Gen1Script : MonoBehaviour {
 			case 0:
 				canInput = false;
 				changeFace("MossGUI1");
-				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
-					                                   "You must be the new intern, what was your name?"));
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,/*"Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +*/
+					                                   "You must be the new intern, what was your name?")));
 				yield return new WaitForSeconds(2f);
-				//addChoice("I'd Rather Not Say", 2);
-				//addChoice("The Name's <PLAYER NAME>", 2);
-				addChoice("*smoke bomb*", 2);
+				addChoice("I'd Rather Not Say", 2);
+				addChoice("The Name's <PLAYER NAME>", 2);
+				//addChoice("*smoke bomb*", 2);
 				textIndex++;
 				break;
 			case 1:
@@ -188,14 +217,19 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 2:
 				changeFace("MossGUI1");
-				yield return StartCoroutine(textScroll("What? Sorry I zoned out there for a second.  \n" +
-						                               "Anyways, today you’ll be helping me breed some bunnies.  \n" +
-						                               "Did you have any experience with genetics at the \n" +
-						                               "Belfast University of Technical Technology and Engineering Research?"));
+//				yield return StartCoroutine(textScroll("What? Sorry I zoned out there for a second.  \n" +
+//						                               "Anyways, today you’ll be helping me breed some bunnies.  \n" +
+//						                               "Did you have any experience with genetics at the \n" +
+//						                               "Belfast University of Technical Technology and Engineering Research?"));
+
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth, "What? Sorry I zoned out there for a second. " +
+				                                       "Anyways, today you’ll be helping me breed some bunnies. " +
+				                                       "Did you have any experience with genetics at the " +
+				                                       "Belfast University of Technical Technology and Engineering Research?")));
 				yield return new WaitForSeconds(2f);
 				addChoice("I Fuckin love punnett squares", 4);
 				addChoice("The only genes I know about are pants", 4);
-				addChoice("I spliced a frog, and by spliced \n" +
+				addChoice("I spliced a frog, and by spliced " +
 						  "I mean that’s the sound it made" , 4);
 				textIndex++;
 				break;
@@ -206,11 +240,11 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 4:
 				changeFace("MossGUI1");
-				yield return StartCoroutine(textScroll("Well everything they teach there is wrong anyways. \n" +
-				                                       "You’re lucky. Today we’ll be breeding a special species of bunny, \n" +
-				                                       "they’re actually closer to turnips, but nevermind that.  \n" +
-				                                       "Right now I want to show you the difference between a dominant \n" +
-				                                       "trait and a recessive trait"));
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Well everything they teach there is wrong anyways. " +
+				                                       "You’re lucky. Today we’ll be breeding a special species of bunny, " +
+				                                       "they’re actually closer to turnips, but nevermind that. " +
+				                                       "Right now I want to show you the difference between a dominant " +
+				                                       "trait and a recessive trait")));
 				yield return new WaitForSeconds(2f);
 				textIndex++;
 				break;
