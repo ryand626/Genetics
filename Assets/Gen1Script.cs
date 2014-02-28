@@ -54,7 +54,6 @@ public class Gen1Script : MonoBehaviour {
 		playerInputButtons = new GameObject[transform.parent.FindChild("PlayerChoices").childCount];
 		for(int i = 0; i < transform.parent.FindChild("PlayerChoices").childCount; i++){
 			playerInputButtons[i] = transform.parent.FindChild("PlayerChoices").GetChild(i).gameObject;
-			print("player input buttons: " + playerInputButtons[i].ToString());
 		}
 	}
 
@@ -71,13 +70,12 @@ public class Gen1Script : MonoBehaviour {
 	}
 
 	void choose(){
+		mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
 		if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
-			print(hit.collider.name);
+			print("COLLIDER: " + hit.collider.name);
 			if(hit.collider.name == "ChoiceBackground"){
+				textIndex = hit.collider.transform.parent.GetComponent<readjust>().whereTo;
 				removeChoices();
-				print("WHERE TO:" + hit.collider.transform.parent.GetComponent<readjust>().whereTo);
-				textIndex ++;
-				canInput = true;
 			}
 		}		
 	}
@@ -160,9 +158,8 @@ public class Gen1Script : MonoBehaviour {
 
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
-		TextMesh choice1 = playerInputButtons[0].transform.FindChild("ChoiceText").GetComponent<TextMesh>();
-
 		while(true){
+
 			// Return can also advance narative
 			if(Input.GetKeyDown(KeyCode.Return) && canInput){
 				textIndex++;
@@ -170,57 +167,53 @@ public class Gen1Script : MonoBehaviour {
 
 			// Ray Casting variables for clicking choice boxes
 
-			mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
-
 			// Conversation Flow
 			// The text Index tells you where you are in the narative
 			switch(textIndex){
 			case 0:
 				canInput = false;
 				changeFace("MossGUI1");
-
 				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
 					                                   "You must be the new intern, what was your name?"));
 				yield return new WaitForSeconds(2f);
-				addChoice("FUCK YEAH", 2);
-				addChoice("lolwut", 2);
-				addChoice("noooooo", 2);
+				addChoice("I'd Rather Not Say", 2);
+				addChoice("The Name's <PLAYER NAME>", 2);
+				addChoice("*smoke bomb*", 2);
 				textIndex++;
 				break;
-
 			case 1:
 				togglePlayerInput(true);
 				changeFace("hide");
-				choice1.text = "MY NAME IS MICHAEL WESTON\n....I USED TO BE A SPY";
 				choose();
-
 				break;
-			
 			case 2:
-				yield return StartCoroutine(textScroll("Anyway's it's time you spent some time \nwith professor Moss"));
-				break;
-			case 3:
-				canInput = false;
-				changeFace("NoFace");
-				yield return StartCoroutine(textScroll("Hold on.....wait"));
-				yield return new WaitForSeconds(2f);
-				yield return StartCoroutine(textScroll("Almost got the display working"));
-				yield return new WaitForSeconds(1f);
 				changeFace("MossGUI1");
-				yield return StartCoroutine(textScroll("GOT IT!"));
-				yield return new WaitForSeconds(1f);
+				yield return StartCoroutine(textScroll("What? Sorry I zoned out there for a second.  \n" +
+						                               "Anyways, today you’ll be helping me breed some bunnies.  \n" +
+						                               "Did you have any experience with genetics at the \n" +
+						                               "Belfast University of Technical Technology and Engineering Research?"));
+				yield return new WaitForSeconds(2f);
+				addChoice("I Fuckin love punnett squares", 4);
+				addChoice("The only genes I know about are pants", 4);
+				addChoice("I spliced a frog, and by spliced \n" +
+						  "I mean that’s the sound it made" , 4);
 				textIndex++;
 				break;
+			case 3:
+				togglePlayerInput(true);
+				changeFace("hide");
+				choose();
+				break;
 			case 4:
-				yield return StartCoroutine(textScroll("Hi. I'm Professor Moss!"));
-				canInput = true;
+				changeFace("MossGUI1");
+				yield return StartCoroutine(textScroll("Well everything they teach there is wrong anyways. \n" +
+				                                       "You’re lucky. Today we’ll be breeding a special species of bunny, \n" +
+				                                       "they’re actually closer to turnips, but nevermind that.  \n" +
+				                                       "Right now I want to show you the difference between a dominant \n" +
+				                                       "trait and a recessive trait"));
+				yield return new WaitForSeconds(2f);
+				textIndex++;
 				break;
-			case 5:
-				yield return StartCoroutine(textScroll("Today we're going to be breeding some\nbunnies!"));
-				break;
-			case 6:
-				yield return StartCoroutine(textScroll("Start by navigating over there to my\nexposition dump! (the wall of text)"));
-				break;				                                  
 			default:
 				Screen.showCursor = false;
 				canInput = false;

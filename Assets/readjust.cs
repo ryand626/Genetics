@@ -7,7 +7,7 @@ public class readjust : MonoBehaviour {
 
 	float xSize,ySize;
 
-	public float scaleFactor;
+	public int stringLength;
 	public float textSize;
 
 	// Where the choice links to
@@ -17,14 +17,14 @@ public class readjust : MonoBehaviour {
 	void Start () {
 		background = transform.FindChild("ChoiceBackground");
 		myText = transform.FindChild("ChoiceText");
-		scaleFactor = 25f;
-		textSize = .25f;
+		stringLength = 20;
+		textSize = .2f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		xSize = 1f + myText.GetComponent<TextMesh>().text.Length % scaleFactor;
-		ySize = 2f + myText.GetComponent<TextMesh>().text.Length / scaleFactor;
+		xSize = Mathf.Floor(myText.GetComponent<TextMesh>().text.Length /*% stringLength*/);
+		ySize = 2 + Mathf.Floor(myText.GetComponent<TextMesh>().text.Length / stringLength);
 		print(xSize + " " + ySize);
 
 		background.localScale = new Vector3(xSize * textSize, 
