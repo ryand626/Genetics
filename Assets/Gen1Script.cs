@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class Gen1Script : MonoBehaviour {
-	// Player reference and position and ability to input
-	public Transform player;
-	private float xpos, ypos;
+	// Ability to input
 	private bool canInput = true;
 
 	// Text variables
@@ -12,14 +10,14 @@ public class Gen1Script : MonoBehaviour {
 	private int textIndex = 0;
 	string oldMessage; // Previous message in box
 	
-	//Button Variables
+	// Continue Button Variables
 	private MeshRenderer continueButton;
 	bool onButton = false; // Check if player is over the button
 
 	//Raycasting for player input
 	private Ray mouseRay;
 
-	// Player Input
+	// Player Input choice buttons
 	private GameObject [] playerInputButtons;
 
 		
@@ -30,38 +28,39 @@ public class Gen1Script : MonoBehaviour {
 		
 		myText = transform.parent.FindChild("Text").GetComponent<TextMesh>();
 		continueButton = transform.parent.FindChild("button").GetComponent<MeshRenderer>();
-//		playerInputButtons = transform.parent.FindChild("PlayerChoices");
 		togglePlayerInput(false);
 
-		StartCoroutine (selector());
 		StartCoroutine(talk());
 		StartCoroutine(button());
 		
 	}
 
-	void FillChoice(){
-		playerInputButtons = new GameObject[transform.parent.FindChild("PlayerChoices").childCount];
-		for(int i = 0; i < transform.parent.FindChild("PlayerChoices").childCount;i++){
-			playerInputButtons[i] = transform.parent.FindChild("PlayerChoices").GetChild(i).gameObject;
-			print("player input buttons: " + playerInputButtons[i].ToString());
-		}
-	}
-	
 	// Show the cursor if the player can input
 	void Update () {
 		if (canInput) {
 			Screen.showCursor = true;
 		}
 	}
-
-	// TODO: DELETE THIS MAYBE
-	IEnumerator selector(){
-		while (true) {
-			yield return null;
+	// Update the playerInputButtons array by filling it with player choice objects
+	void FillChoice(){
+		playerInputButtons = new GameObject[transform.parent.FindChild("PlayerChoices").childCount];
+		for(int i = 0; i < transform.parent.FindChild("PlayerChoices").childCount; i++){
+			playerInputButtons[i] = transform.parent.FindChild("PlayerChoices").GetChild(i).gameObject;
+			print("player input buttons: " + playerInputButtons[i].ToString());
 		}
 	}
 	
-	
+	//Toggles visibility of plyer choice buttons
+	void togglePlayerInput(bool enable){
+		for(int i = 0; i < playerInputButtons.Length; i++){
+			MeshRenderer [] Childrens = playerInputButtons[i].GetComponentsInChildren<MeshRenderer>();
+			foreach( MeshRenderer r in Childrens){
+				r.enabled = enable;
+			}
+		}
+	}
+
+	// Continue button at bottom of screen
 	IEnumerator button(){
 		RaycastHit hit;
 		while (true) {
@@ -99,7 +98,6 @@ public class Gen1Script : MonoBehaviour {
 		}
 	}
 
-
 	// Gives a text scrolling effect
 	IEnumerator textScroll(string text){
 		StopCoroutine ("textScroll");
@@ -115,25 +113,15 @@ public class Gen1Script : MonoBehaviour {
 		
 		yield return null;
 	}
+
 	//Updates the Face of the person
 	void changeFace(string ID){
 		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().enabled = (ID != "hide");
-
 		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().material = (Material)Resources.Load(ID);
 	}
-	//Toggles visibility of input buttons
-	void togglePlayerInput(bool enable){
-		MeshRenderer [] Childrens = playerInputButtons[0].GetComponentsInChildren<MeshRenderer>();
-		foreach( MeshRenderer r in Childrens){
-			r.enabled = enable;
-		}
-	}
 
-
-	
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
-		Debug.Log("AHOSDLKFD" + playerInputButtons[0].ToString());
 		TextMesh choice1 = playerInputButtons[0].transform.FindChild("ChoiceText").GetComponent<TextMesh>();
 
 		while(true){
@@ -156,7 +144,7 @@ public class Gen1Script : MonoBehaviour {
 				togglePlayerInput(true);
 				changeFace("hide");
 				choice1.text = "MY NAME IS MICHAEL WESTON\n....I USED TO BE A SPY";
-				if(Physics.Raycast(mouseRay, out hit,50)){
+				if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
 					print(hit.collider.name);
 					if(hit.collider.name=="ChoiceBackground"){
 						togglePlayerInput(false);
@@ -165,9 +153,6 @@ public class Gen1Script : MonoBehaviour {
 					}
 				}
 				break;
-				//yield return StartCoroutine(textScroll("Sorry about that"));
-				//canInput = true;
-				//break;
 			case 2:
 				yield return StartCoroutine(textScroll("Anyway's it's time you spent some time \nwith professor Moss"));
 				break;
@@ -197,7 +182,6 @@ public class Gen1Script : MonoBehaviour {
 				Screen.showCursor = false;
 				canInput = false;
 				transform.parent.GetComponent<Camera>().enabled = false;
-				//player.GetComponent<PlayerMovement>().canMove = true;
 				break;
 			}
 			yield return null;
