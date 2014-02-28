@@ -1,0 +1,32 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class readjust : MonoBehaviour {
+	Transform background;
+	Transform myText;
+
+	float xSize,ySize;
+
+	public float scaleFactor;
+	public float textSize;
+
+
+	void Start () {
+		background = transform.FindChild("ChoiceBackground");
+		myText = transform.FindChild("ChoiceText");
+		scaleFactor = 20f;
+		textSize = .6f;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		xSize = 1f + myText.GetComponent<TextMesh>().text.Length % scaleFactor;
+		ySize = 1f + myText.GetComponent<TextMesh>().text.Length / scaleFactor;
+		print(xSize + " " + ySize);
+
+		background.localScale = new Vector3(xSize * textSize, 
+		                                    ySize * textSize,
+		                                    background.localScale.z);
+
+	}
+}

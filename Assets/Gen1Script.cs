@@ -20,6 +20,9 @@ public class Gen1Script : MonoBehaviour {
 	//Raycasting for player input
 	private Ray mouseRay;
 
+	// Player Input
+	private GameObject playerInputButton;
+
 		
 	// Initialization
 	void Start () {
@@ -27,7 +30,9 @@ public class Gen1Script : MonoBehaviour {
 		
 		myText = transform.parent.FindChild("Text").GetComponent<TextMesh>();
 		continueButton = transform.parent.FindChild("button").GetComponent<MeshRenderer>();
-		
+		playerInputButton = transform.parent.FindChild("PlayerChoice").gameObject;
+		togglePlayerInput();
+
 		StartCoroutine (selector());
 		StartCoroutine(talk());
 		StartCoroutine(button());
@@ -102,35 +107,62 @@ public class Gen1Script : MonoBehaviour {
 		
 		yield return null;
 	}
-
+	//Updates the Face of the person
 	void changeFace(string ID){
+		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().enabled = (ID != "hide");
+
 		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().material = (Material)Resources.Load(ID);
 	}
+	//Toggles visibility of input buttons
+	void togglePlayerInput(){
+		MeshRenderer [] Childrens = playerInputButton.GetComponentsInChildren<MeshRenderer>();
+		foreach( MeshRenderer r in Childrens){
+			r.enabled = !r.enabled;
+		}
+	}
+
+
 	
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
+		TextMesh choice1 = playerInputButton.transform.FindChild("ChoiceText").GetComponent<TextMesh>();
+
+
+
+
 		while(true){
 			if(Input.GetKeyDown(KeyCode.Return) && canInput){
 				textIndex++;
 			}
+			RaycastHit hit;
+			mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
+
 			switch(textIndex){
 			case 0:
 				canInput = false;
-				changeFace("ProfGUI1");
-				yield return StartCoroutine(textScroll("Hi there.  My name is Oak"));
+				changeFace("MossGUI1");
+				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
+					"You must be the new intern, what was your name?"));
 				yield return new WaitForSeconds(2f);
-				changeFace("NoFace");
-				yield return StartCoroutine(textScroll( "No it's not"));
-				yield return new WaitForSeconds(2f);
-				changeFace("ProfGUI1");
-				yield return StartCoroutine(textScroll("Quiet you"));
-				yield return new WaitForSeconds(2f);
+				togglePlayerInput();
+				changeFace("hide");
 				textIndex++;
+
 				break;
 			case 1:
-				yield return StartCoroutine(textScroll("Sorry about that"));
-				canInput = true;
+				choice1.text = "MY NAME IS MICHAEL WESTON\n....I USED TO BE A SPY";
+				if(Physics.Raycast(mouseRay, out hit,50)){
+					print(hit.collider.name);
+					if(hit.collider.name=="ChoiceBackground"){
+						togglePlayerInput();
+						textIndex++;
+						canInput = true;
+					}
+				}
 				break;
+				//yield return StartCoroutine(textScroll("Sorry about that"));
+				//canInput = true;
+				//break;
 			case 2:
 				yield return StartCoroutine(textScroll("Anyway's it's time you spent some time \nwith professor Moss"));
 				break;
@@ -161,15 +193,19 @@ public class Gen1Script : MonoBehaviour {
 				GameObject playerchoice2 = (GameObject)Instantiate((GameObject)Resources.Load("PlayerChoice"));
 				GameObject playerchoice3 = (GameObject)Instantiate((GameObject)Resources.Load("PlayerChoice"));
 
-				playerchoice2.transform.y = playerchoice1.transform.y-playerchoice1.transform.localScale;
+				float temp = playerchoice1.transform.position.y - playerchoice1.transform.localScale.y;
+				playerchoice2.transform.position = new Vector3(playerchoice2.transform.position.x, temp, playerchoice2.transform.position.z);
+
+				temp = playerchoice2.transform.position.y - playerchoice2.transform.localScale.y;
+				playerchoice3.transform.position = new Vector3(playerchoice3.transform.position.x, temp, playerchoice3.transform.position.z);
 			//	playerchoice.layer = 8;
 				//playerchoice.renderer.material.color=Color.red;
-				textIndex++;
+				//textIndex++;
 				break;				                                  
 			default:
 				Screen.showCursor = false;
 				canInput = false;
-				//transform.parent.GetComponent<Camera>().enabled = false;
+				transform.parent.GetComponent<Camera>().enabled = false;
 				//player.GetComponent<PlayerMovement>().canMove = true;
 				break;
 			}
