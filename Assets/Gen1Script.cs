@@ -16,6 +16,7 @@ public class Gen1Script : MonoBehaviour {
 
 	//Raycasting for player input
 	private Ray mouseRay;
+	private RaycastHit hit;
 
 	// Player Input choice buttons
 	private GameObject [] playerInputButtons;
@@ -64,12 +65,23 @@ public class Gen1Script : MonoBehaviour {
 		newChoice.transform.position = newChoice.transform.parent.position;
 
 		newChoice.GetComponent<readjust>().whereTo = whereTo;
-		print("INSERTING WHERETO " + newChoice.GetComponent<readjust>().whereTo);
 		newChoice.name = "PlayerChoice";
 
 		FillChoice();
 	}
 
+	void choose(){
+		if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
+			print(hit.collider.name);
+			if(hit.collider.name == "ChoiceBackground"){
+				removeChoices();
+				print("WHERE TO:" + hit.collider.transform.parent.GetComponent<readjust>().whereTo);
+				textIndex ++;
+				canInput = true;
+			}
+		}		
+	}
+	
 	void removeChoices(){
 		Destroy(transform.parent.FindChild("PlayerChoices").gameObject);
 		GameObject newChoices = (GameObject)Instantiate(Resources.Load("PlayerChoices"));
@@ -95,7 +107,6 @@ public class Gen1Script : MonoBehaviour {
 	
 	// Continue button at bottom of screen
 	IEnumerator button(){
-		RaycastHit hit;
 		while (true) {
 			// Dubugging to see ray exists
 			mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
@@ -158,7 +169,7 @@ public class Gen1Script : MonoBehaviour {
 			}
 
 			// Ray Casting variables for clicking choice boxes
-			RaycastHit hit;
+
 			mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
 
 			// Conversation Flow
@@ -181,16 +192,8 @@ public class Gen1Script : MonoBehaviour {
 				togglePlayerInput(true);
 				changeFace("hide");
 				choice1.text = "MY NAME IS MICHAEL WESTON\n....I USED TO BE A SPY";
+				choose();
 
-				if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
-					print(hit.collider.name);
-					if(hit.collider.name == "ChoiceBackground"){
-						removeChoices();
-						print("WHERE TO:" + hit.collider.transform.parent.GetComponent<readjust>().whereTo);
-						textIndex ++;
-						canInput = true;
-					}
-				}
 				break;
 			
 			case 2:
