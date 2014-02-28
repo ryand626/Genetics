@@ -57,11 +57,16 @@ public class Gen1Script : MonoBehaviour {
 		}
 	}
 
-	void addChoice(string choiceString){
+	void addChoice(string choiceString, int whereTo){
 		GameObject newChoice = (GameObject)Instantiate(Resources.Load("PlayerChoice"));
 		newChoice.transform.parent = transform.parent.FindChild("PlayerChoices");
 		newChoice.transform.FindChild("ChoiceText").GetComponent<TextMesh>().text = choiceString;
 		newChoice.transform.position = newChoice.transform.parent.position;
+
+		newChoice.GetComponent<readjust>().whereTo = whereTo;
+		print("INSERTING WHERETO " + newChoice.GetComponent<readjust>().whereTo);
+		newChoice.name = "PlayerChoice";
+
 		FillChoice();
 	}
 
@@ -166,9 +171,9 @@ public class Gen1Script : MonoBehaviour {
 				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
 					                                   "You must be the new intern, what was your name?"));
 				yield return new WaitForSeconds(2f);
-				addChoice("FUCK YEAH");
-				addChoice("lolwut");
-				addChoice("noooooo");
+				addChoice("FUCK YEAH", 2);
+				addChoice("lolwut", 2);
+				addChoice("noooooo", 2);
 				textIndex++;
 				break;
 
@@ -181,7 +186,8 @@ public class Gen1Script : MonoBehaviour {
 					print(hit.collider.name);
 					if(hit.collider.name == "ChoiceBackground"){
 						removeChoices();
-						textIndex++;
+						print("WHERE TO:" + hit.collider.transform.parent.GetComponent<readjust>().whereTo);
+						textIndex ++;
 						canInput = true;
 					}
 				}

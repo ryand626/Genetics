@@ -10,6 +10,9 @@ public class readjust : MonoBehaviour {
 	public float scaleFactor;
 	public float textSize;
 
+	// Where the choice links to
+	public int whereTo;
+
 
 	void Start () {
 		background = transform.FindChild("ChoiceBackground");
