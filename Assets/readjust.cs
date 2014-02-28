@@ -27,7 +27,7 @@ public class readjust : MonoBehaviour {
 	// Scale Choice Background
 	void Update () {
 		stringLength = transform.parent.parent.FindChild("Text").gameObject.GetComponent<Gen1Script>().choiceTextWidth;
-		print ("STRING LENGTH: " + stringLength);
+//		print ("STRING LENGTH: " + stringLength);
 		stringHeight = yScale * (2 + Mathf.FloorToInt(myText.GetComponent<TextMesh>().text.Length / stringLength));
 		background.localScale = new Vector3(stringLength * boxScale, 
 		                                    stringHeight * boxScale,
