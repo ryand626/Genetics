@@ -11,8 +11,7 @@ public class Gen1Script : MonoBehaviour {
 	private TextMesh myText;
 	private int textIndex = 0;
 	string oldMessage; // Previous message in box
-
-
+	
 	//Button Variables
 	private MeshRenderer continueButton;
 	bool onButton = false; // Check if player is over the button
@@ -21,22 +20,31 @@ public class Gen1Script : MonoBehaviour {
 	private Ray mouseRay;
 
 	// Player Input
-	private GameObject playerInputButton;
+	private GameObject [] playerInputButtons;
 
 		
 	// Initialization
 	void Start () {
+		FillChoice();
 		oldMessage = "-";
 		
 		myText = transform.parent.FindChild("Text").GetComponent<TextMesh>();
 		continueButton = transform.parent.FindChild("button").GetComponent<MeshRenderer>();
-		playerInputButton = transform.parent.FindChild("PlayerChoice").gameObject;
-		togglePlayerInput();
+//		playerInputButtons = transform.parent.FindChild("PlayerChoices");
+		togglePlayerInput(false);
 
 		StartCoroutine (selector());
 		StartCoroutine(talk());
 		StartCoroutine(button());
 		
+	}
+
+	void FillChoice(){
+		playerInputButtons = new GameObject[transform.parent.FindChild("PlayerChoices").childCount];
+		for(int i = 0; i < transform.parent.FindChild("PlayerChoices").childCount;i++){
+			playerInputButtons[i] = transform.parent.FindChild("PlayerChoices").GetChild(i).gameObject;
+			print("player input buttons: " + playerInputButtons[i].ToString());
+		}
 	}
 	
 	// Show the cursor if the player can input
@@ -114,10 +122,10 @@ public class Gen1Script : MonoBehaviour {
 		transform.parent.FindChild("Face").GetComponent<MeshRenderer>().material = (Material)Resources.Load(ID);
 	}
 	//Toggles visibility of input buttons
-	void togglePlayerInput(){
-		MeshRenderer [] Childrens = playerInputButton.GetComponentsInChildren<MeshRenderer>();
+	void togglePlayerInput(bool enable){
+		MeshRenderer [] Childrens = playerInputButtons[0].GetComponentsInChildren<MeshRenderer>();
 		foreach( MeshRenderer r in Childrens){
-			r.enabled = !r.enabled;
+			r.enabled = enable;
 		}
 	}
 
@@ -125,10 +133,8 @@ public class Gen1Script : MonoBehaviour {
 	
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
-		TextMesh choice1 = playerInputButton.transform.FindChild("ChoiceText").GetComponent<TextMesh>();
-
-
-
+		Debug.Log("AHOSDLKFD" + playerInputButtons[0].ToString());
+		TextMesh choice1 = playerInputButtons[0].transform.FindChild("ChoiceText").GetComponent<TextMesh>();
 
 		while(true){
 			if(Input.GetKeyDown(KeyCode.Return) && canInput){
@@ -144,17 +150,16 @@ public class Gen1Script : MonoBehaviour {
 				yield return StartCoroutine(textScroll("Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +
 					"You must be the new intern, what was your name?"));
 				yield return new WaitForSeconds(2f);
-				togglePlayerInput();
-				changeFace("hide");
 				textIndex++;
-
 				break;
 			case 1:
+				togglePlayerInput(true);
+				changeFace("hide");
 				choice1.text = "MY NAME IS MICHAEL WESTON\n....I USED TO BE A SPY";
 				if(Physics.Raycast(mouseRay, out hit,50)){
 					print(hit.collider.name);
 					if(hit.collider.name=="ChoiceBackground"){
-						togglePlayerInput();
+						togglePlayerInput(false);
 						textIndex++;
 						canInput = true;
 					}
@@ -187,20 +192,6 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 6:
 				yield return StartCoroutine(textScroll("Start by navigating over there to my\nexposition dump! (the wall of text)"));
-				break;
-			case 7:
-				GameObject playerchoice1 = (GameObject)Instantiate((GameObject)Resources.Load("PlayerChoice"));
-				GameObject playerchoice2 = (GameObject)Instantiate((GameObject)Resources.Load("PlayerChoice"));
-				GameObject playerchoice3 = (GameObject)Instantiate((GameObject)Resources.Load("PlayerChoice"));
-
-				float temp = playerchoice1.transform.position.y - playerchoice1.transform.localScale.y;
-				playerchoice2.transform.position = new Vector3(playerchoice2.transform.position.x, temp, playerchoice2.transform.position.z);
-
-				temp = playerchoice2.transform.position.y - playerchoice2.transform.localScale.y;
-				playerchoice3.transform.position = new Vector3(playerchoice3.transform.position.x, temp, playerchoice3.transform.position.z);
-			//	playerchoice.layer = 8;
-				//playerchoice.renderer.material.color=Color.red;
-				//textIndex++;
 				break;				                                  
 			default:
 				Screen.showCursor = false;
