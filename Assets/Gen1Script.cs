@@ -186,6 +186,12 @@ public class Gen1Script : MonoBehaviour {
 		yield return null;
 	}
 
+	IEnumerator tell(string words){
+
+		yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,words)));
+		yield return new WaitForSeconds(2f);
+	}
+
 	//ALL THE CONVERSATIONS
 	IEnumerator talk(){
 		while(true){
@@ -202,12 +208,13 @@ public class Gen1Script : MonoBehaviour {
 			case 0:
 				canInput = false;
 				changeFace("MossGUI1");
+				//StartCoroutine(tell ("You must be the new intern, what was your name?"));
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,/*"Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +*/
 					                                   "You must be the new intern, what was your name?")));
 				yield return new WaitForSeconds(2f);
 				addChoice("I'd Rather Not Say", 2);
 				addChoice("The Name's <PLAYER NAME>", 2);
-				//addChoice("*smoke bomb*", 2);
+				addChoice("*smoke bomb*", 2);
 				textIndex++;
 				break;
 			case 1:
@@ -249,17 +256,27 @@ public class Gen1Script : MonoBehaviour {
 				textIndex++;
 				break;
 			case 5:
+				// Professor and Player walk over to the bunny pens
+				playerVars.DisableGUI();
+				playerVars.DisableMovement();
 				firstNav mossNav = GameObject.Find("Moss").GetComponent<firstNav>();
 				firstNav playerNav = GameObject.Find("player").GetComponent<firstNav>();
 				mossNav.go();
 				playerNav.go();
 
+				Screen.showCursor = false;
+				canInput = false;
+				transform.parent.GetComponent<Camera>().enabled = false;
+
 				textIndex++;
+				break;
+			case 6:
+				print(playerVars.reachedDestination);
 				break;
 			default:
 				Screen.showCursor = false;
 				canInput = false;
-				transform.parent.GetComponent<Camera>().enabled = false;
+				transform.parent.GetComponent<Camera>().enabled = true;
 				break;
 			}
 			yield return null;

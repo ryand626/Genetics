@@ -14,4 +14,10 @@ public class firstNav : MonoBehaviour {
 		agent.SetDestination(target.position);
 	
 	}
+
+	void Update(){
+		if(Vector3.Distance(transform.position,target.position)<.1f){
+			playerVars.atDestination();
+		}
+	}
 }

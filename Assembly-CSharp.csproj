@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraMovement.cs" />
+     <Compile Include="Assets\GUIHide.cs" />
      <Compile Include="Assets\Gen1Script.cs" />
      <Compile Include="Assets\MovementControl.cs" />
      <Compile Include="Assets\MyScripts\AddtoMachine.cs" />

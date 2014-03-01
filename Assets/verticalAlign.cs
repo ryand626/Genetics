@@ -6,11 +6,11 @@ public class verticalAlign : MonoBehaviour {
 	float total;
 	public float buffer;
 	public float ScaleFactor;
-	int size;
+	//int size;
 
 	void Start () {
 		ScaleFactor = .7f;
-		size = transform.childCount;
+		//size = transform.childCount;
 		buffer = 0f;
 		updateArray();
 		align();
