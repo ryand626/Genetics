@@ -7,7 +7,6 @@ public class Gen1Script : MonoBehaviour {
 
 	// Text variables
 	private TextMesh myText;
-	private int textIndex = 0;
 	string oldMessage; // Previous message in box
 	
 	// Continue Button Variables
@@ -28,6 +27,7 @@ public class Gen1Script : MonoBehaviour {
 		
 	// Initialization
 	void Start () {
+		playerVars.setIndex(0);
 		playerVars.EnableGUI();
 
 		BoxTextWidth = 60;
@@ -85,7 +85,7 @@ public class Gen1Script : MonoBehaviour {
 		mouseRay = transform.parent.camera.ScreenPointToRay(Input.mousePosition);
 		if(Physics.Raycast(mouseRay, out hit,50) && Input.GetMouseButton(0)){
 			if(hit.collider.name == "ChoiceBackground"){
-				textIndex = hit.collider.transform.parent.GetComponent<readjust>().whereTo;
+				playerVars.setIndex(hit.collider.transform.parent.GetComponent<readjust>().whereTo);
 				removeChoices();
 			}
 		}		
@@ -140,7 +140,7 @@ public class Gen1Script : MonoBehaviour {
 			}
 			// If you click the button when you're allowed, you may continue
 			if(onButton && canInput && Input.GetMouseButtonDown(0)){
-				textIndex++;
+				playerVars.proceed();
 			}
 
 			// Button rotates if it's enabled
@@ -200,14 +200,14 @@ public class Gen1Script : MonoBehaviour {
 
 			// Return can also advance narative
 			if(Input.GetKeyDown(KeyCode.Return) && canInput){
-				textIndex++;
+				playerVars.proceed();
 			}
 
 			transform.parent.GetComponent<Camera>().enabled = playerVars.ActiveGUI;
 
 			// Conversation Flow
 			// The text Index tells you where you are in the narative
-			switch(textIndex){
+			switch(playerVars.textIndex){
 			case 0:
 				canInput = false;
 				changeFace("MossGUI1");
@@ -218,7 +218,7 @@ public class Gen1Script : MonoBehaviour {
 				addChoice("I'd Rather Not Say", 2);
 				addChoice("The Name's <PLAYER NAME>", 2);
 				addChoice("*smoke bomb*", 2);
-				textIndex++;
+				playerVars.proceed();
 				break;
 			case 1:
 				togglePlayerInput(true);
@@ -227,21 +227,16 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 2:
 				changeFace("MossGUI1");
-//				yield return StartCoroutine(textScroll("What? Sorry I zoned out there for a second.  \n" +
-//						                               "Anyways, today you’ll be helping me breed some bunnies.  \n" +
-//						                               "Did you have any experience with genetics at the \n" +
-//						                               "Belfast University of Technical Technology and Engineering Research?"));
-
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth, "What? Sorry I zoned out there for a second. " +
 				                                       "Anyways, today you’ll be helping me breed some bunnies. " +
 				                                       "Did you have any experience with genetics at the " +
 				                                       "Belfast University of Technical Technology and Engineering Research?")));
 				yield return new WaitForSeconds(2f);
-				addChoice("I Fuckin love punnett squares", 4);
+				addChoice("I love punnett squares!", 4);
 				addChoice("The only genes I know about are pants", 4);
 				addChoice("I spliced a frog, and by spliced " +
 						  "I mean that’s the sound it made" , 4);
-				textIndex++;
+				playerVars.proceed();
 				break;
 			case 3:
 				togglePlayerInput(true);
@@ -256,7 +251,7 @@ public class Gen1Script : MonoBehaviour {
 				                                       "Right now I want to show you the difference between a dominant " +
 				                                       "trait and a recessive trait")));
 				yield return new WaitForSeconds(2f);
-				textIndex++;
+				playerVars.proceed();
 				break;
 			case 5:
 				// Professor and Player walk over to the bunny pens
@@ -270,20 +265,22 @@ public class Gen1Script : MonoBehaviour {
 				Screen.showCursor = false;
 				canInput = false;
 
-				textIndex++;
+				playerVars.proceed();
 				break;
 			case 6:
 				print(playerVars.reachedDestination);
 				if(playerVars.reachedDestination){
 					playerVars.EnableGUI();
-					textIndex++;
+					playerVars.proceed();
 				}
 				break;
 			case 7:
 				changeFace("MossGUI1");
-				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"I'm glad you made it this far")));
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Now you see, in my breed of bunnies, red fur is a dominant trait, " +
+									                   "while white fur is recessive. If a red and white bunny breed, their offspring will be red, " +
+									                   "The dominant trait “dominates” the other traits and prevents them from being expressed")));
 				yield return new WaitForSeconds(2f);
-				textIndex++;
+				playerVars.proceed();
 				break;
 			default:
 				Screen.showCursor = false;

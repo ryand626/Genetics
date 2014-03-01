@@ -26,4 +26,12 @@ public static class playerVars{
 	public static void goinToDestination(){
 		reachedDestination = false;
 	}
+
+	public static int textIndex;
+	public static void proceed(){
+		textIndex++;
+	}
+	public static void setIndex(int index){
+		textIndex = index;
+	}
 }
