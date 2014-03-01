@@ -68,6 +68,7 @@
      <Compile Include="Assets\MyScripts\testGui.cs" />
      <Compile Include="Assets\MyScripts\testText.cs" />
      <Compile Include="Assets\MyScripts\text.cs" />
+     <Compile Include="Assets\firstNav.cs" />
      <Compile Include="Assets\playerVars.cs" />
      <Compile Include="Assets\readjust.cs" />
      <Compile Include="Assets\verticalAlign.cs" />

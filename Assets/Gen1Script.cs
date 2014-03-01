@@ -154,7 +154,7 @@ public class Gen1Script : MonoBehaviour {
 		string newString = "";
 		bool insertNewline = false;
 
-		int buffer = 0;
+//		int buffer = 0;
 		// Need to add first character manually to avoid text wrapping after first word
 		newString += oldString[0];
 
@@ -246,6 +246,14 @@ public class Gen1Script : MonoBehaviour {
 				                                       "Right now I want to show you the difference between a dominant " +
 				                                       "trait and a recessive trait")));
 				yield return new WaitForSeconds(2f);
+				textIndex++;
+				break;
+			case 5:
+				firstNav mossNav = GameObject.Find("Moss").GetComponent<firstNav>();
+				firstNav playerNav = GameObject.Find("player").GetComponent<firstNav>();
+				mossNav.go();
+				playerNav.go();
+
 				textIndex++;
 				break;
 			default:
