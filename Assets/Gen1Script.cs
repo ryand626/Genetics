@@ -28,6 +28,8 @@ public class Gen1Script : MonoBehaviour {
 		
 	// Initialization
 	void Start () {
+		playerVars.EnableGUI();
+
 		BoxTextWidth = 60;
 		choiceTextWidth = 20;
 
@@ -201,6 +203,7 @@ public class Gen1Script : MonoBehaviour {
 				textIndex++;
 			}
 
+			transform.parent.GetComponent<Camera>().enabled = playerVars.ActiveGUI;
 
 			// Conversation Flow
 			// The text Index tells you where you are in the narative
@@ -266,17 +269,26 @@ public class Gen1Script : MonoBehaviour {
 
 				Screen.showCursor = false;
 				canInput = false;
-				transform.parent.GetComponent<Camera>().enabled = false;
 
 				textIndex++;
 				break;
 			case 6:
 				print(playerVars.reachedDestination);
+				if(playerVars.reachedDestination){
+					playerVars.EnableGUI();
+					textIndex++;
+				}
+				break;
+			case 7:
+				changeFace("MossGUI1");
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"I'm glad you made it this far")));
+				yield return new WaitForSeconds(2f);
+				textIndex++;
 				break;
 			default:
 				Screen.showCursor = false;
 				canInput = false;
-				transform.parent.GetComponent<Camera>().enabled = true;
+				playerVars.DisableGUI();
 				break;
 			}
 			yield return null;
