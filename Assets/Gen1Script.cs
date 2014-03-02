@@ -28,9 +28,13 @@ public class Gen1Script : MonoBehaviour {
 	// Dispense
 	public Dispenser Dominant;
 	public Dispenser Recessive;
+
+	private Vector3 machine;
 		
 	// Initialization
 	void Start () {
+		machine = new Vector3(0f,1f,12f);
+
 		playerVars.setIndex(0);
 		playerVars.EnableGUI();
 
@@ -223,7 +227,7 @@ public class Gen1Script : MonoBehaviour {
 				addChoice("I'd Rather Not Say", 2);
 				addChoice("The Name's <PLAYER NAME>", 2);
 				addChoice("*smoke bomb*", 2);
-				Recessive.Dispense();
+				//Recessive.Dispense();
 				playerVars.proceed();
 				break;
 			case 1:
@@ -261,7 +265,7 @@ public class Gen1Script : MonoBehaviour {
 				//playerVars.proceed();
 				break;
 			case 5:
-				Dominant.Dispense();
+				//Dominant.Dispense();
 				//canInput = false;
 				// Professor and Player walk over to the bunny pens
 				playerVars.DisableGUI();
@@ -287,11 +291,32 @@ public class Gen1Script : MonoBehaviour {
 				changeFace("MossGUI1");
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Now you see, in my breed of bunnies, red fur is a dominant trait, " +
 									                   "while white fur is recessive. If a red and white bunny breed, their offspring will be red, " +
-									                   "The dominant trait “dominates” the other traits and prevents them from being expressed")));
+									                   "The dominant trait “dominates” the other traits and prevents them from being expressed. " +
+									                   "Here watch")));
 				yield return new WaitForSeconds(2f);
 				//playerVars.proceed();
 				canInput = true;
 				break;
+
+			// Dispense Bunnies and make them move towards the machine
+			case 8:
+				Dominant.Dispense();
+				Recessive.Dispense();
+				playerVars.proceed();
+				break;
+			case 9:
+				Dominant.penPals[0].transform.position = Vector3.Lerp(Dominant.penPals[0].transform.position, machine,Time.deltaTime);
+				if(Vector3.Distance(Dominant.penPals[0].transform.position, machine) < 3f){
+					playerVars.proceed();
+				}
+				break;
+			case 10:
+				Recessive.penPals[0].transform.position = Vector3.Lerp(Recessive.penPals[0].transform.position, machine,Time.deltaTime);
+				if(Vector3.Distance(Recessive.penPals[0].transform.position, machine) < 3f){
+					playerVars.proceed();
+				}
+				break;
+				
 			default:
 				Screen.showCursor = false;
 				canInput = false;

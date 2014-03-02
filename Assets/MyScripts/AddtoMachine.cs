@@ -6,7 +6,7 @@ public class AddtoMachine : MonoBehaviour {
 	//public GameObject bunnyTemplate;
 	testDNA P1;
 	testDNA P2;
-	//public testCollision sphere;
+	public testCollision sphere;
 	Color startColor;
 	
 	void Start () {
@@ -22,7 +22,6 @@ public class AddtoMachine : MonoBehaviour {
 			Locked = true;	
 		}
 		if(Locked){
-			print("AHHSDF");
 			if(Input.GetMouseButtonDown(0)){
 				toMachine();	
 				renderer.material.color = startColor;
@@ -50,8 +49,8 @@ public class AddtoMachine : MonoBehaviour {
 			if(P1 == null){
 				P1 = target.gameObject.GetComponent<testDNA>();
 				
-				//sphere.HaveOne = false;
-				//sphere.Active = false;
+				sphere.HaveOne = false;
+				sphere.Active = false;
 				
 				target.transform.tag = "Parent";
 				target.rigidbody.velocity = Vector3.zero;
@@ -61,8 +60,8 @@ public class AddtoMachine : MonoBehaviour {
 			}else if(P2 == null){
 				P2 = target.gameObject.GetComponent<testDNA>();	
 				
-				//sphere.HaveOne = false;
-				//sphere.Active = false;
+				sphere.HaveOne = false;
+				sphere.Active = false;
 				
 				target.transform.tag = "Parent";
 				target.rigidbody.velocity = Vector3.zero;	

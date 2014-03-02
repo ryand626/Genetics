@@ -47,7 +47,7 @@ public class penScript : MonoBehaviour {
 	
 	void makeBunny(){
 		//testDNA newDNA = GameObject.CreatePrimitive (PrimitiveType.Sphere).AddComponent<testDNA> ();
-		GameObject bunny = (GameObject)Resources.Load("Bunny");
+		GameObject bunny = (GameObject)Instantiate(Resources.Load("Bunny"));
 		testDNA newDNA = bunny.AddComponent<testDNA>();
 		//newDNA = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<bunny_behavior>();
 		newDNA.P1 = DNA.P1;

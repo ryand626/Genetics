@@ -10,10 +10,11 @@ public class testCollision : MonoBehaviour {
 	void Start(){
 		HaveOne = false;
 		Active = false;
-		transform.position = transform.parent.position + 6 * Vector3.forward;
+		//transform.position = transform.parent.position + 6 * Vector3.forward;
 	}
 	
 	void Update(){
+
 		if(Input.GetKeyDown(KeyCode.LeftShift)){
 			if(Active){
 				HaveOne = false;
@@ -23,9 +24,9 @@ public class testCollision : MonoBehaviour {
 			}
 		}
 		if(Active){
-			//renderer.material.color = Color.green;	
+			renderer.material.color = Color.green;	
 		}else{
-			//renderer.material.color = Color.red;
+			renderer.material.color = Color.red;
 		}
 		if(HaveOne){
 			renderer.material.color = Color.clear;	
@@ -34,6 +35,7 @@ public class testCollision : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider target){
+		print ("COLLIDE" +" active "+ Active +" haveone: "+ HaveOne);
 		if(Active && !HaveOne){
 			if(target.tag == "wild"){
 				target.tag = "inventory";
@@ -44,7 +46,9 @@ public class testCollision : MonoBehaviour {
 		}
 	}
 	void OnTriggerStay(Collider target){
+
 		if(Active && !HaveOne){
+			print ("collidddd");
 			if(target.tag == "wild"){
 				target.tag = "inventory";
 				HaveOne = true;
@@ -57,8 +61,12 @@ public class testCollision : MonoBehaviour {
 		if(target.tag == "inventory"){
 			//TODO: FIX THIS
 			target.transform.position = transform.position;
-			transform.parent.FindChild("LArm").Rotate(5,0,0);
-			transform.parent.FindChild("RArm").Rotate(-5,0,0);
+			// ARMS
+			//transform.parent.FindChild("LArm").Rotate(5,0,0);
+			//transform.parent.FindChild("RArm").Rotate(-5,0,0);
+
+
+			//DELETE?
 			//target.rigidbody.velocity = (Mathf.Pow(Vector3.Distance(transform.position,target.transform.position),2)*(transform.position-target.transform.position));
 			
 			if(Input.GetKeyDown(KeyCode.O)){
@@ -69,12 +77,12 @@ public class testCollision : MonoBehaviour {
 					g.trait1 = Random.Range(0f, 1f);
 					g.trait2 = Random.Range(0f, 1f);
 				}
-				
 			}
 		}
 		if(!Active){
-			transform.parent.FindChild("LArm").rotation = new Quaternion(0,0,0,0);
-			transform.parent.FindChild("RArm").rotation = new Quaternion(0,0,0,0);
+			//ARMS
+			//transform.parent.FindChild("LArm").rotation = new Quaternion(0,0,0,0);
+			//transform.parent.FindChild("RArm").rotation = new Quaternion(0,0,0,0);
 			
 			if(target.tag == "inventory"){
 				target.tag = "wild";
@@ -86,6 +94,7 @@ public class testCollision : MonoBehaviour {
 	}
 	
 	void OnTriggerExit(Collider target){
+		print ("EXIT");
 		if(target.tag == "inventory"){
 			target.tag = "wild";
 			target.rigidbody.velocity = Vector3.zero;

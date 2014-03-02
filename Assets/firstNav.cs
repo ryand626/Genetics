@@ -24,7 +24,6 @@ public class firstNav : MonoBehaviour {
 			playerVars.atDestination();
 		}
 		if (playerVars.reachedDestination) {
-			print("apples");
 			agent.Stop();
 		}
 	}
