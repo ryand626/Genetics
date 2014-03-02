@@ -36,8 +36,9 @@ public class moodMusic : MonoBehaviour {
 		
 		for(int i = 0; i < MyDNA.express[0]*5; i++) {
 			
-			GameObject bunny = (GameObject)Instantiate(bunnyTemplate);
-			testDNA newDNA = bunny.AddComponent<testDNA>();
+			//GameObject bunny = (GameObject)Instantiate(bunnyTemplate);
+			//GameObject bunny = (GameObject)Instantiate(Resources.Load("Bunny"));
+			testDNA newDNA = bunnyTemplate.AddComponent<testDNA>();
 			//newDNA = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<bunny_behavior>();
 			newDNA.P1 = P1.actual;
 			newDNA.P2 = P2.actual;

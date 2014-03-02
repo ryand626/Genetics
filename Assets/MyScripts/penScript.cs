@@ -58,7 +58,7 @@ public class penScript : MonoBehaviour {
 		newDNA.expressGenes();
 		newDNA.transform.position = transform.position + Vector3.up * 5;
 		newDNA.name = "DNA" + numBunnies;
-		newDNA.tag = "inventory";
+		//newDNA.tag = "inventory";
 		
 		penPals.Add(newDNA);
 		numBunnies++;

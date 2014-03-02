@@ -24,33 +24,10 @@ public class Dispenser : MonoBehaviour {
 
 	}
 	
-//	void OnCollisionStay(Collision target){
-//		if(target.transform.tag == "Player") {
-//			move = target.transform.GetComponent<PlayerMovement>();
-//			if(move.avatar.transform.FindChild("Interact Sphere").transform.GetComponent<testCollision>().bun != null){
-//				if(Input.GetMouseButtonDown(2)){
-//					DNA = move.avatar.transform.FindChild("Interact Sphere").GetComponent<testCollision>().bun.GetComponent<testDNA>();
-//					renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], DNA.express [3]);
-//				}
-//			}
-//			if(Input.GetMouseButtonDown(0)){
-//				Dispense();
-//			}
-//		}
-//		if(target.transform.tag == "inventory"){
-//			if(Input.GetMouseButtonDown(2)){
-//				DNA = target.gameObject.GetComponent<testDNA>();
-//				renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], DNA.express [3]);
-//			}
-//		}
-//	}
-	
 	public void Dispense(){
 		print ("DISPENSE CALLED");
-		//testDNA newDNA = GameObject.CreatePrimitive (PrimitiveType.Sphere).AddComponent<testDNA> ();
 		GameObject bunny = (GameObject)Instantiate(Resources.Load("Bunny"));
 		testDNA newDNA = bunny.AddComponent<testDNA>();
-		//newDNA = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<bunny_behavior>();
 		newDNA.P1 = DNA.P1;
 		newDNA.P2 = DNA.P2;
 		newDNA.actual = DNA.actual;

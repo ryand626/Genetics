@@ -35,14 +35,11 @@ public class testCollision : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider target){
-		print ("COLLIDE" +" active "+ Active +" haveone: "+ HaveOne);
 		if(Active && !HaveOne){
 			if(target.tag == "wild"){
 				target.tag = "inventory";
 				HaveOne = true;
-
 			}
-			
 		}
 	}
 	void OnTriggerStay(Collider target){

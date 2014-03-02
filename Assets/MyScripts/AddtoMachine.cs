@@ -6,7 +6,7 @@ public class AddtoMachine : MonoBehaviour {
 	//public GameObject bunnyTemplate;
 	testDNA P1;
 	testDNA P2;
-	public testCollision sphere;
+	//public testCollision sphere;
 	Color startColor;
 	
 	void Start () {
@@ -31,7 +31,7 @@ public class AddtoMachine : MonoBehaviour {
 	
 	void toMachine(){
 		moodMusic genes = gameObject.AddComponent<moodMusic>();
-		genes.bunnyTemplate = (GameObject)Resources.Load("Bunny");
+		genes.bunnyTemplate = (GameObject)Instantiate(Resources.Load("Bunny"));
 		genes.P1 = P1;
 		genes.P2 = P2;
 		genes.ActivateBabyProcess();
@@ -49,8 +49,8 @@ public class AddtoMachine : MonoBehaviour {
 			if(P1 == null){
 				P1 = target.gameObject.GetComponent<testDNA>();
 				
-				sphere.HaveOne = false;
-				sphere.Active = false;
+				//sphere.HaveOne = false;
+				//sphere.Active = false;
 				
 				target.transform.tag = "Parent";
 				target.rigidbody.velocity = Vector3.zero;
@@ -60,8 +60,8 @@ public class AddtoMachine : MonoBehaviour {
 			}else if(P2 == null){
 				P2 = target.gameObject.GetComponent<testDNA>();	
 				
-				sphere.HaveOne = false;
-				sphere.Active = false;
+				//sphere.HaveOne = false;
+				//sphere.Active = false;
 				
 				target.transform.tag = "Parent";
 				target.rigidbody.velocity = Vector3.zero;	
