@@ -141,6 +141,7 @@ public class Gen1Script : MonoBehaviour {
 			// If you click the button when you're allowed, you may continue
 			if(onButton && canInput && Input.GetMouseButtonDown(0)){
 				playerVars.proceed();
+				canInput = false;
 			}
 
 			// Button rotates if it's enabled
@@ -251,9 +252,11 @@ public class Gen1Script : MonoBehaviour {
 				                                       "Right now I want to show you the difference between a dominant " +
 				                                       "trait and a recessive trait")));
 				yield return new WaitForSeconds(2f);
-				playerVars.proceed();
+				canInput = true;
+				//playerVars.proceed();
 				break;
 			case 5:
+				//canInput = false;
 				// Professor and Player walk over to the bunny pens
 				playerVars.DisableGUI();
 				playerVars.DisableMovement();
@@ -280,7 +283,8 @@ public class Gen1Script : MonoBehaviour {
 									                   "while white fur is recessive. If a red and white bunny breed, their offspring will be red, " +
 									                   "The dominant trait “dominates” the other traits and prevents them from being expressed")));
 				yield return new WaitForSeconds(2f);
-				playerVars.proceed();
+				//playerVars.proceed();
+				canInput = true;
 				break;
 			default:
 				Screen.showCursor = false;
