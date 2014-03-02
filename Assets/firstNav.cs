@@ -15,6 +15,10 @@ public class firstNav : MonoBehaviour {
 	
 	}
 
+	public void stop(){
+
+	}
+
 	void Update(){
 		if(Vector3.Distance(transform.position,target.position)<.5f){
 			playerVars.atDestination();
