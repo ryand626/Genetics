@@ -46,10 +46,8 @@ public class penScript : MonoBehaviour {
 	}
 	
 	void makeBunny(){
-		//testDNA newDNA = GameObject.CreatePrimitive (PrimitiveType.Sphere).AddComponent<testDNA> ();
 		GameObject bunny = (GameObject)Instantiate(Resources.Load("Bunny"));
 		testDNA newDNA = bunny.AddComponent<testDNA>();
-		//newDNA = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<bunny_behavior>();
 		newDNA.P1 = DNA.P1;
 		newDNA.P2 = DNA.P2;
 		newDNA.actual = DNA.actual;
@@ -58,8 +56,7 @@ public class penScript : MonoBehaviour {
 		newDNA.expressGenes();
 		newDNA.transform.position = transform.position + Vector3.up * 5;
 		newDNA.name = "DNA" + numBunnies;
-		//newDNA.tag = "inventory";
-		
+			
 		penPals.Add(newDNA);
 		numBunnies++;
 	}

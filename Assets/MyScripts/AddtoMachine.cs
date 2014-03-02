@@ -3,10 +3,9 @@ using System.Collections;
 
 public class AddtoMachine : MonoBehaviour {
 	public bool Locked;
-	//public GameObject bunnyTemplate;
-	testDNA P1;
-	testDNA P2;
-	//public testCollision sphere;
+	public testDNA P1;
+	public testDNA P2;
+	public testCollision sphere;
 	Color startColor;
 	
 	void Start () {
@@ -23,21 +22,19 @@ public class AddtoMachine : MonoBehaviour {
 		}
 		if(Locked){
 			if(Input.GetMouseButtonDown(0)){
-				toMachine();	
-				renderer.material.color = startColor;
+				babyTime();	
+
 			}
 		}
 	}
 	
-	void toMachine(){
+	public void babyTime(){
+		renderer.material.color = startColor;
 		moodMusic genes = gameObject.AddComponent<moodMusic>();
 		genes.bunnyTemplate = (GameObject)Instantiate(Resources.Load("Bunny"));
 		genes.P1 = P1;
 		genes.P2 = P2;
 		genes.ActivateBabyProcess();
-		//foreach(testDNA bunny in genes.bunnies){
-			//bunny.rigidbody.velocity = Vector3.forward*10;	
-		//}
 		Destroy(genes);
 		Locked = false;
 		P1 = null;
@@ -49,19 +46,18 @@ public class AddtoMachine : MonoBehaviour {
 			if(P1 == null){
 				P1 = target.gameObject.GetComponent<testDNA>();
 				
-				//sphere.HaveOne = false;
-				//sphere.Active = false;
+				sphere.HaveOne = false;
+				sphere.Active = false;
 				
 				target.transform.tag = "Parent";
-				target.rigidbody.velocity = Vector3.zero;
 				
 				renderer.material.color = Color.gray;
-			
+				target.rigidbody.velocity = Vector3.zero;
 			}else if(P2 == null){
 				P2 = target.gameObject.GetComponent<testDNA>();	
 				
-				//sphere.HaveOne = false;
-				//sphere.Active = false;
+				sphere.HaveOne = false;
+				sphere.Active = false;
 				
 				target.transform.tag = "Parent";
 				target.rigidbody.velocity = Vector3.zero;	

@@ -46,14 +46,14 @@ public class testDNA : MonoBehaviour
 	public void StartExpress ()
 	{
 		for (int i = 0; i < actual.genes.Length; i++) {
-			if (actual.genes [i].T1 == actual.genes [i].T2) {
-				express [i] = (actual.genes [i].trait1 + actual.genes [i].trait2) / 2f;
+			if (actual.genes[i].T1 == actual.genes[i].T2) {
+				express[i] = (actual.genes[i].trait1 + actual.genes[i].trait2) / 2f;
 			}
-			if (actual.genes [i].T1 && !actual.genes [i].T2) {
-				express [i] = actual.genes [i].trait1;
+			if (actual.genes[i].T1 && !actual.genes[i].T2) {
+				express[i] = actual.genes[i].trait1;
 			}
-			if (!actual.genes [i].T1 && actual.genes [i].T2) {
-				express [i] = actual.genes [i].trait2;
+			if (!actual.genes[i].T1 && actual.genes[i].T2) {
+				express[i] = actual.genes[i].trait2;
 			}
 		}
 	}
@@ -63,15 +63,15 @@ public class testDNA : MonoBehaviour
 		if (P1 != null || P2 != null) {
 			for (int i = 0; i<20; i++) {
 				if (Random.Range (0f, 1f) > .5f) {
-					actual.genes [i].T1 = P1.genes [i].T1;
-					actual.genes [i].T2 = P1.genes [i].T2;
+					actual.genes [i].T1 = P1.genes[i].T1;
+					actual.genes [i].T2 = P2.genes[i].T2;
 					actual.genes [i].trait1 = P1.genes [i].trait1;
-					actual.genes [i].trait2 = P1.genes [i].trait2;
+					actual.genes [i].trait2 = P2.genes [i].trait2;
 				} else {
 					actual.genes [i].T1 = P2.genes [i].T1;
-					actual.genes [i].T2 = P2.genes [i].T2;
+					actual.genes [i].T2 = P1.genes [i].T2;
 					actual.genes [i].trait1 = P2.genes [i].trait1;
-					actual.genes [i].trait2 = P2.genes [i].trait2;				
+					actual.genes [i].trait2 = P1.genes [i].trait2;				
 				}
 			}
 		} else {
@@ -96,7 +96,7 @@ public class testDNA : MonoBehaviour
 			gameObject.AddComponent<MeshRenderer>();			
 		}
 		renderer.material.color = myColor;
-		Vector3 scale = new Vector3(express[11] * 2 + 1,express[12] * 2 + 1,express[13] * 2 + 1);
+		Vector3 scale = new Vector3(express[11],express[12],express[13]);
 		transform.localScale = (express[14] + .5f ) * scale * 2;
 		
 		//create necessary physics structures
@@ -108,10 +108,10 @@ public class testDNA : MonoBehaviour
 		
 		//Genetic Behavior initialization
 		bunny_behavior behavior = gameObject.AddComponent<bunny_behavior>();
-		behavior.jumpstrength = express[8] * 45f;
+		behavior.jumpstrength = express[8] * 4f;
 		behavior.rotationSpeed = express[9] * 3f;
-		behavior.xSpeed = express[10]*5f;
-		behavior.zSpeed = express[15]*5f;
+		behavior.xSpeed = express[10]*3f;
+		behavior.zSpeed = express[15]*3f;
 		behavior.Sound = gameObject.AddComponent<AudioSource>();
 		behavior.changeDirection = express[19];
 		

@@ -30,6 +30,7 @@ public class Gen1Script : MonoBehaviour {
 	public Dispenser Recessive;
 
 	private Vector3 machine;
+	public AddtoMachine machineScript;
 		
 	// Initialization
 	void Start () {
@@ -306,17 +307,25 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 9:
 				Dominant.penPals[0].transform.position = Vector3.Lerp(Dominant.penPals[0].transform.position, machine,Time.deltaTime);
-				if(Vector3.Distance(Dominant.penPals[0].transform.position, machine) < 3f){
+				if(machineScript.P1 != null){
 					playerVars.proceed();
 				}
 				break;
 			case 10:
 				Recessive.penPals[0].transform.position = Vector3.Lerp(Recessive.penPals[0].transform.position, machine,Time.deltaTime);
-				if(Vector3.Distance(Recessive.penPals[0].transform.position, machine) < 3f){
+				if(machineScript.P2 != null){
 					playerVars.proceed();
 				}
+
 				break;
-				
+			case 11:
+				yield return new WaitForSeconds(2f);
+				playerVars.proceed();
+				break;
+			case 12:
+				machineScript.babyTime();
+				playerVars.proceed();
+				break;
 			default:
 				Screen.showCursor = false;
 				canInput = false;

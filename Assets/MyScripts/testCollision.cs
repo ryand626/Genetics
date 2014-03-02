@@ -15,7 +15,7 @@ public class testCollision : MonoBehaviour {
 	
 	void Update(){
 
-		if(Input.GetKeyDown(KeyCode.LeftShift)){
+		if(Input.GetKeyDown(KeyCode.Space)){
 			if(Active){
 				HaveOne = false;
 				Active = false;
@@ -43,17 +43,13 @@ public class testCollision : MonoBehaviour {
 		}
 	}
 	void OnTriggerStay(Collider target){
-
 		if(Active && !HaveOne){
 			print ("collidddd");
 			if(target.tag == "wild"){
 				target.tag = "inventory";
 				HaveOne = true;
 				bun = target;
-				
-
 			}
-			
 		}
 		if(target.tag == "inventory"){
 			//TODO: FIX THIS
@@ -61,7 +57,6 @@ public class testCollision : MonoBehaviour {
 			// ARMS
 			//transform.parent.FindChild("LArm").Rotate(5,0,0);
 			//transform.parent.FindChild("RArm").Rotate(-5,0,0);
-
 
 			//DELETE?
 			//target.rigidbody.velocity = (Mathf.Pow(Vector3.Distance(transform.position,target.transform.position),2)*(transform.position-target.transform.position));
