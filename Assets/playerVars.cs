@@ -34,4 +34,10 @@ public static class playerVars{
 	public static void setIndex(int index){
 		textIndex = index;
 	}
+
+	public static GameObject focusPoint;
+	public static void setFocus(GameObject focus){
+		focusPoint = focus;
+	}
+
 }

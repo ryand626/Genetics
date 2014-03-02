@@ -1,14 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MyScripts\penScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Dispenser.cs">
     <Files>
-      <File FileName="Assets\MyScripts\penScript.cs" Line="67" Column="1" />
-      <File FileName="Assets\playerVars.cs" Line="1" Column="1" />
-      <File FileName="Assets\Gen1Script.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\readjust.cs" Line="1" Column="1" />
-      <File FileName="Assets\verticalAlign.cs" Line="1" Column="1" />
-      <File FileName="Assets\firstNav.cs" Line="1" Column="1" />
+      <File FileName="Assets\Gen1Script.cs" Line="247" Column="26" />
+      <File FileName="Assets\firstNav.cs" Line="32" Column="1" />
+      <File FileName="Assets\Dispenser.cs" Line="51" Column="71" />
+      <File FileName="Assets\playerVars.cs" Line="38" Column="1" />
+      <File FileName="Assets\readjust.cs" Line="37" Column="1" />
+      <File FileName="Assets\verticalAlign.cs" Line="49" Column="1" />
+      <File FileName="Assets\CameraMovement.cs" Line="77" Column="1" />
+      <File FileName="Assets\MovementControl.cs" Line="19" Column="2" />
+      <File FileName="Assets\MyScripts\bunny_behavior.cs" Line="28" Column="18" />
+      <File FileName="Assets\MyScripts\AddtoMachine.cs" Line="35" Column="54" />
+      <File FileName="Assets\MyScripts\moodMusic.cs" Line="39" Column="60" />
+      <File FileName="Assets\MyScripts\penScript.cs" Line="17" Column="4" />
+      <File FileName="Assets\MyScripts\testDNA.cs" Line="90" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

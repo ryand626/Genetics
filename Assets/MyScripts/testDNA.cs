@@ -87,25 +87,26 @@ public class testDNA : MonoBehaviour
 	
 	public void expressGenes ()
 	{
+		print ("EXPRESSIN GENES");
 		transform.tag = "wild";
 		
 		//Add Genetic Appearance 
 		Color myColor = new Color (express [4], express [1], express [2], express [3]);
 		if (!renderer) {
-			gameObject.AddComponent<MeshRenderer> ();			
+			gameObject.AddComponent<MeshRenderer>();			
 		}
 		renderer.material.color = myColor;
 		Vector3 scale = new Vector3(express[11] * 2 + 1,express[12] * 2 + 1,express[13] * 2 + 1);
 		transform.localScale = (express[14] + .5f ) * scale * 2;
 		
-		//create necessary structures
+		//create necessary physics structures
 		if(!rigidbody){
 			myPhysics = gameObject.AddComponent<Rigidbody>();
 		}
 		myPhysics = gameObject.GetComponent<Rigidbody>();
 		myPhysics.freezeRotation = true;
 		
-		//Genetic Behavior
+		//Genetic Behavior initialization
 		bunny_behavior behavior = gameObject.AddComponent<bunny_behavior>();
 		behavior.jumpstrength = express[8] * 45f;
 		behavior.rotationSpeed = express[9] * 3f;

@@ -24,6 +24,10 @@ public class Gen1Script : MonoBehaviour {
 	public int BoxTextWidth;
 	public int choiceTextWidth;
 
+
+	// Dispense
+	public Dispenser Dominant;
+	public Dispenser Recessive;
 		
 	// Initialization
 	void Start () {
@@ -219,6 +223,7 @@ public class Gen1Script : MonoBehaviour {
 				addChoice("I'd Rather Not Say", 2);
 				addChoice("The Name's <PLAYER NAME>", 2);
 				addChoice("*smoke bomb*", 2);
+				Recessive.Dispense();
 				playerVars.proceed();
 				break;
 			case 1:
@@ -256,6 +261,7 @@ public class Gen1Script : MonoBehaviour {
 				//playerVars.proceed();
 				break;
 			case 5:
+				Dominant.Dispense();
 				//canInput = false;
 				// Professor and Player walk over to the bunny pens
 				playerVars.DisableGUI();

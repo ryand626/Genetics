@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class penScript : MonoBehaviour {
-	public GameObject bunnyTemplate;
 	public testGene gene;
 	private List<testDNA> penPals = new List<testDNA>();
 	private int numBunnies;
@@ -48,7 +47,7 @@ public class penScript : MonoBehaviour {
 	
 	void makeBunny(){
 		//testDNA newDNA = GameObject.CreatePrimitive (PrimitiveType.Sphere).AddComponent<testDNA> ();
-		GameObject bunny = (GameObject)Instantiate(bunnyTemplate);
+		GameObject bunny = (GameObject)Resources.Load("Bunny");
 		testDNA newDNA = bunny.AddComponent<testDNA>();
 		//newDNA = GameObject.CreatePrimitive(PrimitiveType.Cube).AddComponent<bunny_behavior>();
 		newDNA.P1 = DNA.P1;
@@ -59,6 +58,7 @@ public class penScript : MonoBehaviour {
 		newDNA.expressGenes();
 		newDNA.transform.position = transform.position + Vector3.up * 5;
 		newDNA.name = "DNA" + numBunnies;
+		newDNA.tag = "inventory";
 		
 		penPals.Add(newDNA);
 		numBunnies++;

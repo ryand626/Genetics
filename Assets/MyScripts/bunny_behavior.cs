@@ -10,6 +10,7 @@ public class bunny_behavior : MonoBehaviour {
 	public AudioSource Sound;
 	public float changeDirection;
 	//private Quaternion myRotation;
+
 	//Bool for jumping
 	bool hoplatch;
 
@@ -25,9 +26,9 @@ public class bunny_behavior : MonoBehaviour {
 			if(Random.Range(0, 250) == 0){
 				Sound.volume = 5f;
 				Sound.Play();
-				rigidbody.velocity = Vector3.up*jumpstrength;
-				rigidbody.velocity += Vector3.forward*xSpeed;
-				rigidbody.velocity += Vector3.right*zSpeed;
+				rigidbody.velocity = Vector3.up * jumpstrength;
+				rigidbody.velocity += Vector3.forward * xSpeed;
+				rigidbody.velocity += Vector3.right * zSpeed;
 				
 				if(Random.Range(0f,1f) < changeDirection){
 					rotationSpeed = -rotationSpeed;
@@ -44,7 +45,6 @@ public class bunny_behavior : MonoBehaviour {
 	}
 	
 	void OnCollisionStay(Collision target){
-		
 		if (target.transform.tag == "jump surface"){
 			hoplatch = true;	
 		}

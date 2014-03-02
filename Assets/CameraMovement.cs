@@ -28,6 +28,9 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Initialize variables
 	void Awake () {
+		playerVars.setFocus (player);
+		//player
+
 		smoothx = 1f;
 		smoothz = 1f;
 
@@ -39,6 +42,7 @@ public class CameraMovement : MonoBehaviour {
 		StartCoroutine(loop());
 	}
 
+
 	// Loop continuously updating the camera position
 	IEnumerator loop(){
 		while (true){
@@ -49,6 +53,7 @@ public class CameraMovement : MonoBehaviour {
 
 	//follow the player
 	void followMe(){
+		player = playerVars.focusPoint;
 		// Set new coordinates to old posistion
 		float newX = transform.position.x;
 		float newZ = transform.position.z;
