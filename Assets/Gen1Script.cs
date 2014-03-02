@@ -324,6 +324,7 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 12:
 				machineScript.babyTime();
+				playerVars.setObjective("D",4);
 				playerVars.proceed();
 				break;
 			default:

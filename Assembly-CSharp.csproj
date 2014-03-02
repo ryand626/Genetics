@@ -70,6 +70,7 @@
      <Compile Include="Assets\MyScripts\testGui.cs" />
      <Compile Include="Assets\MyScripts\testText.cs" />
      <Compile Include="Assets\MyScripts\text.cs" />
+     <Compile Include="Assets\consumeBunny.cs" />
      <Compile Include="Assets\firstNav.cs" />
      <Compile Include="Assets\pickup.cs" />
      <Compile Include="Assets\playerVars.cs" />
