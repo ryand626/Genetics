@@ -24,27 +24,40 @@ public class Gen1Script : MonoBehaviour {
 	public int BoxTextWidth;
 	public int choiceTextWidth;
 
+	// Receptacles
+	public consumeBunny DomReceptacle;
+	public consumeBunny RecReceptacle;
+	public consumeBunny HetReceptacle;
 
-	// Dispense
+	// Dispensers
 	public Dispenser Dominant;
 	public Dispenser Recessive;
 
+	// Machine
 	private Vector3 machine;
 	public AddtoMachine machineScript;
 		
 	// Initialization
 	void Start () {
+		// Machine location data
 		machine = new Vector3(0f,1f,12f);
 
+		// Make sure objectives are off in the beginning
+		DomReceptacle.enabled = false;
+		RecReceptacle.enabled = false;
+		HetReceptacle.enabled = false;
+
+		// Initialize GUI
 		playerVars.setIndex(0);
 		playerVars.EnableGUI();
 
+		// TEXT WRAP CONSTRAINTS
 		BoxTextWidth = 60;
 		choiceTextWidth = 20;
 
+		// TEXT BLANK INITIALIZATION
 		FillChoice();
 		oldMessage = "-";
-		
 		myText = transform.parent.FindChild("Text").GetComponent<TextMesh>();
 		continueButton = transform.parent.FindChild("button").GetComponent<MeshRenderer>();
 		togglePlayerInput(false);
@@ -301,6 +314,7 @@ public class Gen1Script : MonoBehaviour {
 
 			// Dispense Bunnies and make them move towards the machine
 			case 8:
+				canInput = false;
 				Dominant.Dispense();
 				Recessive.Dispense();
 				playerVars.proceed();
@@ -324,8 +338,37 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 12:
 				machineScript.babyTime();
-				playerVars.setObjective("D",4);
 				playerVars.proceed();
+				break;
+			case 13:
+				changeFace("MossGUI1");
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"I FORGOT TO TELL YOU. Sometimes a parent can have both " +
+					                                                           "dominant and recessive traits.  When it mixes with a purely " +
+					                                                           "recessive, or another mixed, it can produce, dominant, mixed or " +
+					                                                           "recessive offspring.  See if you can put one of each into those " +
+					                                                           "receptacles over there!")));
+				//playerVars.DisableGUI();
+				canInput = true;
+				break;
+			case 14:
+				playerVars.DisableGUI();
+				DomReceptacle.enabled = true;
+				RecReceptacle.enabled = true;
+				HetReceptacle.enabled = true;
+				if(DomReceptacle.goal < 0 && RecReceptacle.goal < 0 && HetReceptacle.goal < 0){
+					print("YOU DID IT!");
+					playerVars.EnableGUI();
+					playerVars.proceed();
+				}
+				break;
+			case 15:
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Thank you.  I'll be sure to put them to good use!")));
+				canInput = true;
+				break;
+			case 16:
+				changeFace("hide");
+				canInput = false;
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"MISSION COMPLETE")));
 				break;
 			default:
 				Screen.showCursor = false;
