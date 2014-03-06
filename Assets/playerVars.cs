@@ -40,14 +40,4 @@ public static class playerVars{
 		focusPoint = focus;
 	}
 
-
-	public static string combo;
-	public static int traitNumber;
-
-	public static void setObjective(string newCombo, int newTraitNumber){
-		combo = newCombo;
-		traitNumber = newTraitNumber;
-	}
-
-
 }

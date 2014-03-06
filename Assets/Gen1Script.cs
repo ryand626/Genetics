@@ -222,9 +222,9 @@ public class Gen1Script : MonoBehaviour {
 		while(true){
 
 			// Return can also advance narative
-			if(Input.GetKeyDown(KeyCode.Return) && canInput){
-				playerVars.proceed();
-			}
+//			if(Input.GetKeyDown(KeyCode.Return) && canInput){
+//				playerVars.proceed();
+//			}
 
 			transform.parent.GetComponent<Camera>().enabled = playerVars.ActiveGUI;
 
@@ -295,7 +295,7 @@ public class Gen1Script : MonoBehaviour {
 				playerVars.proceed();
 				break;
 			case 6:
-				print(playerVars.reachedDestination);
+				//print(playerVars.reachedDestination);
 				if(playerVars.reachedDestination){
 					playerVars.EnableGUI();
 					playerVars.proceed();

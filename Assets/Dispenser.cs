@@ -25,7 +25,7 @@ public class Dispenser : MonoBehaviour {
 	}
 	
 	public void Dispense(){
-		print ("DISPENSE CALLED");
+		//print ("DISPENSE CALLED");
 		GameObject bunny = (GameObject)Instantiate(Resources.Load("Bunny"));
 		testDNA newDNA = bunny.AddComponent<testDNA>();
 		newDNA.P1 = DNA.P1;
