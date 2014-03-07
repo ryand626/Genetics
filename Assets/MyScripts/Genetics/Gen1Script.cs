@@ -221,11 +221,6 @@ public class Gen1Script : MonoBehaviour {
 	IEnumerator talk(){
 		while(true){
 
-			// Return can also advance narative
-//			if(Input.GetKeyDown(KeyCode.Return) && canInput){
-//				playerVars.proceed();
-//			}
-
 			transform.parent.GetComponent<Camera>().enabled = playerVars.ActiveGUI;
 
 			// Conversation Flow
@@ -235,11 +230,10 @@ public class Gen1Script : MonoBehaviour {
 				canInput = false;
 				changeFace("MossGUI1");
 				//StartCoroutine(tell ("You must be the new intern, what was your name?"));
-				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,/*"Hi there! Sorry about Melissa, she’s just friendly, I swear. \n" +*/
-					                                   "You must be the new intern, what was your name?")));
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth, "You must be the new intern, what was your name?")));
 				yield return new WaitForSeconds(2f);
 				addChoice("I'd Rather Not Say", 2);
-				addChoice("The Name's <PLAYER NAME>", 2);
+				addChoice("The Name's " + playerVars.name, 2);
 				addChoice("*smoke bomb*", 2);
 				//Recessive.Dispense();
 				playerVars.proceed();
