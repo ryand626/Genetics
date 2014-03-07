@@ -4,10 +4,10 @@ using System.Collections;
 public static class playerVars{
 	// Initialization
 	public static void initialize () {
-		DisableMovement ();
-		DisableGUI ();
-		setIndex (0);
-		atDestination ();
+		//DisableMovement ();
+		//DisableGUI ();
+		//setIndex (0);
+		//atDestination ();
 		setName ("JEFF");
 	}
 

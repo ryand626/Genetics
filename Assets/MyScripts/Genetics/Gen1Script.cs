@@ -361,8 +361,11 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 16:
 				changeFace("hide");
-				canInput = false;
+				//canInput = false;
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"MISSION COMPLETE")));
+				break;
+			case 17:
+				Application.LoadLevel("Main Menu");
 				break;
 			default:
 				Screen.showCursor = false;
