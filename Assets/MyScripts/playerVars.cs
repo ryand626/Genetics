@@ -26,6 +26,12 @@ public static class playerVars{
 		canMove = false;
 	}
 
+	// Direction
+	public static int direction;
+	public static void setDirection(int newDirection){
+		direction = newDirection;
+	}
+
 	// GUI
 	public static bool ActiveGUI;
 	public static void EnableGUI(){

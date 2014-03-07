@@ -60,6 +60,7 @@
      <Compile Include="Assets\MyScripts\Genetics\Dispenser.cs" />
      <Compile Include="Assets\MyScripts\Genetics\Gen1Script.cs" />
      <Compile Include="Assets\MyScripts\Genetics\GeneScrambler.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\MovementControl.cs" />
      <Compile Include="Assets\MyScripts\Genetics\bunny_behavior.cs" />
      <Compile Include="Assets\MyScripts\Genetics\consumeBunny.cs" />
      <Compile Include="Assets\MyScripts\Genetics\moodMusic.cs" />
@@ -69,7 +70,6 @@
      <Compile Include="Assets\MyScripts\Genetics\testDNA.cs" />
      <Compile Include="Assets\MyScripts\Genetics\testGene.cs" />
      <Compile Include="Assets\MyScripts\Interact.cs" />
-     <Compile Include="Assets\MyScripts\MovementControl.cs" />
      <Compile Include="Assets\MyScripts\PlayerCamera.cs" />
      <Compile Include="Assets\MyScripts\PlayerMovement.cs" />
      <Compile Include="Assets\MyScripts\firstNav.cs" />
@@ -80,6 +80,7 @@
      <Compile Include="Assets\MyScripts\playerVars.cs" />
      <Compile Include="Assets\MyScripts\shadow.cs" />
      <Compile Include="Assets\MyScripts\testText.cs" />
+     <Compile Include="Assets\playerSpriteAnimation.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
