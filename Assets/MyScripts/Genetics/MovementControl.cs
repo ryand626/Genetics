@@ -46,9 +46,25 @@ public class MovementControl : MonoBehaviour {
 	}
 
 	void updatePickupBox () {
-		int directionInt = playerVars.direction;
-		float direction = directionInt * 1f;
-		sphere.position = transform.position;
-		sphere.rotation = new Quaternion (direction, direction, 0f, 0f);
+		switch(playerVars.direction){
+		case 0:
+			sphere.position = transform.FindChild("front").position;
+			sphere.rotation = transform.FindChild("front").rotation;
+			break;
+		case 1:
+			sphere.position = transform.FindChild("right").position;
+			sphere.rotation = transform.FindChild("right").rotation;
+			break;
+		case 2:
+			sphere.position = transform.FindChild("left").position;
+			sphere.rotation = transform.FindChild("left").rotation;
+			break;
+		case 3:
+			sphere.position = transform.FindChild("back").position;
+			sphere.rotation = transform.FindChild("back").rotation;
+			break;
+		default:
+			break;
+		}
 	}
 }
