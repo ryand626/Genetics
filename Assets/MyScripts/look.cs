@@ -7,9 +7,9 @@ public class look : MonoBehaviour {
 	void Start () {
 	
 	}
-	
 	// Update is called once per frame
 	void Update () {
-		transform.LookAt (target);
+		transform.rotation = Quaternion.identity;
+		//transform.LookAt (target);
 	}
 }

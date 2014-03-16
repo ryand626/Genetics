@@ -35,7 +35,7 @@ public class Gen1Script : MonoBehaviour {
 
 	// Machine
 	private Vector3 machine;
-	public AddtoMachine machineScript;
+	public bunnyMachine machineScript;
 		
 	// Initialization
 	void Start () {

@@ -26,6 +26,12 @@ public static class playerVars{
 		canMove = false;
 	}
 
+	// Holding
+	public static bool holding;
+	public static void setHolding(bool amIHolding){
+		holding = amIHolding;
+	}
+
 	// Direction
 	public static int direction;
 	public static void setDirection(int newDirection){

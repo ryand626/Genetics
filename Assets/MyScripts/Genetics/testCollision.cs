@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class testCollision : MonoBehaviour {
@@ -10,7 +10,7 @@ public class testCollision : MonoBehaviour {
 	void Start(){
 		HaveOne = false;
 		Active = false;
-		//transform.position = transform.parent.position + 6 * Vector3.forward;
+		transform.position = transform.parent.position + 6 * Vector3.forward;
 	}
 	
 	void Update(){
@@ -52,11 +52,10 @@ public class testCollision : MonoBehaviour {
 			}
 		}
 		if(target.tag == "inventory"){
-			//TODO: FIX THIS
 			target.transform.position = transform.position;
-			// ARMS
-			//transform.parent.FindChild("LArm").Rotate(5,0,0);
-			//transform.parent.FindChild("RArm").Rotate(-5,0,0);
+	
+			transform.parent.FindChild("LArm").Rotate(5,0,0);
+			transform.parent.FindChild("RArm").Rotate(-5,0,0);
 
 			//DELETE?
 			//target.rigidbody.velocity = (Mathf.Pow(Vector3.Distance(transform.position,target.transform.position),2)*(transform.position-target.transform.position));
@@ -72,9 +71,9 @@ public class testCollision : MonoBehaviour {
 			}
 		}
 		if(!Active){
-			//ARMS
-			//transform.parent.FindChild("LArm").rotation = new Quaternion(0,0,0,0);
-			//transform.parent.FindChild("RArm").rotation = new Quaternion(0,0,0,0);
+
+			transform.parent.FindChild("LArm").rotation = new Quaternion(0,0,0,0);
+			transform.parent.FindChild("RArm").rotation = new Quaternion(0,0,0,0);
 			
 			if(target.tag == "inventory"){
 				target.tag = "wild";

@@ -7,7 +7,7 @@ public class MovementControl : MonoBehaviour {
 	private Transform sphere;
 
 	void Awake () {
-		sphere = transform.FindChild ("Interact Sphere");
+		sphere = transform.FindChild("player Sprite").FindChild ("Interact Sphere");
 		direction = playerVars.direction;
 		PlayerSpeed = 3f;
 		StartCoroutine(loop());
@@ -48,20 +48,20 @@ public class MovementControl : MonoBehaviour {
 	void updatePickupBox () {
 		switch(playerVars.direction){
 		case 0:
-			sphere.position = transform.FindChild("front").position;
-			sphere.rotation = transform.FindChild("front").rotation;
+			sphere.position = transform.FindChild("player Sprite").FindChild("front").position;
+			sphere.rotation = transform.FindChild("player Sprite").FindChild("front").rotation;
 			break;
 		case 1:
-			sphere.position = transform.FindChild("right").position;
-			sphere.rotation = transform.FindChild("right").rotation;
+			sphere.position = transform.FindChild("player Sprite").FindChild("right").position;
+			sphere.rotation = transform.FindChild("player Sprite").FindChild("right").rotation;
 			break;
 		case 2:
-			sphere.position = transform.FindChild("left").position;
-			sphere.rotation = transform.FindChild("left").rotation;
+			sphere.position = transform.FindChild("player Sprite").FindChild("left").position;
+			sphere.rotation = transform.FindChild("player Sprite").FindChild("left").rotation;
 			break;
 		case 3:
-			sphere.position = transform.FindChild("back").position;
-			sphere.rotation = transform.FindChild("back").rotation;
+			sphere.position = transform.FindChild("player Sprite").FindChild("back").position;
+			sphere.rotation = transform.FindChild("player Sprite").FindChild("back").rotation;
 			break;
 		default:
 			break;
