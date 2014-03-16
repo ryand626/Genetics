@@ -23,7 +23,6 @@ public class bunnyMachine : MonoBehaviour {
 		if(Locked){
 			if(Input.GetMouseButtonDown(0)){
 				babyTime();	
-				
 			}
 		}
 	}
