@@ -14,7 +14,6 @@ public class playerSpriteAnimation : MonoBehaviour {
 						|| Input.GetKeyDown (KeyCode.A)
 						|| Input.GetKeyDown (KeyCode.S)
 						|| Input.GetKeyDown (KeyCode.D));
-		Debug.Log (playerVars.direction);
 		anim.SetInteger ("direction", playerVars.direction);
 	}
 }

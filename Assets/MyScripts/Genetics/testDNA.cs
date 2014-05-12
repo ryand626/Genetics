@@ -87,7 +87,6 @@ public class testDNA : MonoBehaviour
 	
 	public void expressGenes ()
 	{
-		print ("EXPRESSIN GENES");
 		transform.tag = "wild";
 		
 		//Add Genetic Appearance 

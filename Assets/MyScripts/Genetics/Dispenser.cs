@@ -10,6 +10,8 @@ public class Dispenser : MonoBehaviour {
 	private testDNA DNA;
 	private PlayerMovement move;
 	private GameObject targetBunny;
+
+	public buttonPedestal button;
 	
 	void Start () {
 		DNA = gameObject.AddComponent<testDNA>();
@@ -23,6 +25,13 @@ public class Dispenser : MonoBehaviour {
 		renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], DNA.express [3]);
 
 	}
+
+	void Update(){
+		if (button.pressed == true) {
+			button.pressed = false;
+			Dispense();
+		}
+	}
 	
 	public void Dispense(){
 		//print ("DISPENSE CALLED");
@@ -35,7 +44,7 @@ public class Dispenser : MonoBehaviour {
 		newDNA.StartExpress();
 		newDNA.expressGenes();
 		newDNA.transform.position = transform.position + Vector3.up * 5;
-		newDNA.rigidbody.velocity += Vector3.forward * 10f;
+		newDNA.rigidbody.velocity -= Vector3.forward * 10f;
 		newDNA.name = "DNA" + numBunnies;
 		newDNA.tag = "inventory";
 		

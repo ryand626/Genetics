@@ -14,7 +14,9 @@ public class pickup : MonoBehaviour {
 	}
 	
 	void Update(){
-		
+		if (Active && !HaveOne) {
+			Active = false;
+		}
 		if(Input.GetKeyDown(KeyCode.Space)){
 			if(Active){
 				HaveOne = false;
@@ -30,8 +32,10 @@ public class pickup : MonoBehaviour {
 		}else{
 			renderer.material.color = Color.red;
 		}
-		if(HaveOne){
+		if (HaveOne) {
 			renderer.material.color = Color.clear;	
+		} else {
+			bun = null;
 		}
 
 		if (playerVars.holding == true) {

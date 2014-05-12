@@ -35,10 +35,13 @@ public class Gen1Script : MonoBehaviour {
 
 	// Machine
 	private Vector3 machine;
-	public bunnyMachine machineScript;
+	public geneCrosser machineScript;
 		
 	// Initialization
 	void Start () {
+		// Prevent player movement
+		playerVars.DisableMovement ();
+
 		// Machine location data
 		machine = new Vector3(0f,1f,12f);
 
@@ -204,17 +207,16 @@ public class Gen1Script : MonoBehaviour {
 			oldMessage = text;
 			myText.text = "";
 			for (int i = 0; i < text.Length; i++) {
+				if(Input.GetKeyDown(KeyCode.Space)){
+					myText.text = text;
+					StopCoroutine("textScroll");
+					break;
+				}
 				myText.text += text[i];
 				yield return null;
 			}
 		}
 		yield return null;
-	}
-
-	IEnumerator tell(string words){
-
-		yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,words)));
-		yield return new WaitForSeconds(2f);
 	}
 
 	//ALL THE CONVERSATIONS
@@ -298,7 +300,7 @@ public class Gen1Script : MonoBehaviour {
 			case 7:
 				changeFace("MossGUI1");
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Now you see, in my breed of bunnies, red fur is a dominant trait, " +
-									                   "while white fur is recessive. If a red and white bunny breed, their offspring will be red, " +
+									                   "while black fur is recessive. If a red and black bunny breed, their offspring will be red, " +
 									                   "The dominant trait “dominates” the other traits and prevents them from being expressed. " +
 									                   "Here watch")));
 				yield return new WaitForSeconds(2f);
@@ -339,32 +341,43 @@ public class Gen1Script : MonoBehaviour {
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"I FORGOT TO TELL YOU. Sometimes a parent can have both " +
 					                                                           "dominant and recessive traits.  When it mixes with a purely " +
 					                                                           "recessive, or another mixed, it can produce, dominant, mixed or " +
-					                                                           "recessive offspring.  See if you can put one of each into those " +
-					                                                           "receptacles over there!")));
+				                                                               "recessive offspring."  )));
 				//playerVars.DisableGUI();
 				canInput = true;
 				break;
 			case 14:
+				changeFace("container");
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth, "See if you can breed me 2 black bunnies, seven red heterozygous " +
+																				"bunnies and 3 dominant red bunnies.  You can put them in the " +
+				                                                                "receptacles over there!")));
+				DomReceptacle.show();
+				RecReceptacle.show();
+				HetReceptacle.show();
+				canInput = true;
+				break;
+			
+			case 15:
+				playerVars.EnableMovement();
 				playerVars.DisableGUI();
 				DomReceptacle.enabled = true;
 				RecReceptacle.enabled = true;
 				HetReceptacle.enabled = true;
-				if(DomReceptacle.goal < 0 && RecReceptacle.goal < 0 && HetReceptacle.goal < 0){
-					print("YOU DID IT!");
+				if(DomReceptacle.goal <= 0 && RecReceptacle.goal <= 0 && HetReceptacle.goal <= 0){
+					changeFace("MossGUI1");
 					playerVars.EnableGUI();
 					playerVars.proceed();
 				}
 				break;
-			case 15:
+			case 16:
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Thank you.  I'll be sure to put them to good use!")));
 				canInput = true;
 				break;
-			case 16:
+			case 17:
 				changeFace("hide");
 				//canInput = false;
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"MISSION COMPLETE")));
 				break;
-			case 17:
+			case 18:
 				Application.LoadLevel("Main Menu");
 				break;
 			default:

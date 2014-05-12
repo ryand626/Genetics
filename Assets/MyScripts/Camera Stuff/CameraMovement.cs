@@ -34,7 +34,7 @@ public class CameraMovement : MonoBehaviour {
 		smoothx = 1f;
 		smoothz = 1f;
 
-		distance = 10f;
+		distance = 14f;
 
 		horizontalMargin = .5f;
 		verticalMargin = .25f;

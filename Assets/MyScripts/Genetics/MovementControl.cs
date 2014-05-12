@@ -16,7 +16,9 @@ public class MovementControl : MonoBehaviour {
 	// Game Loop
 	IEnumerator loop(){
 		while(true){
-			Move();
+			if(playerVars.canMove){
+				Move();
+			}
 			yield return null;
 		}
 	}
