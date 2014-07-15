@@ -45,7 +45,8 @@ public class bunnyMachine : MonoBehaviour {
 			if(P1 == null){
 				P1 = target.gameObject.GetComponent<testDNA>();
 				
-				sphere.HaveOne = false;
+				//sphere.HaveOne = false;
+				playerVars.setHolding(false);
 				sphere.Active = false;
 				
 				target.transform.tag = "Parent";
@@ -54,8 +55,9 @@ public class bunnyMachine : MonoBehaviour {
 				target.rigidbody.velocity = Vector3.zero;
 			}else if(P2 == null){
 				P2 = target.gameObject.GetComponent<testDNA>();	
-				
-				sphere.HaveOne = false;
+
+				playerVars.setHolding(false);
+				//sphere.HaveOne = false;
 				sphere.Active = false;
 				
 				target.transform.tag = "Parent";

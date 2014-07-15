@@ -24,8 +24,9 @@ public class bunny_behavior : MonoBehaviour {
 	void Update () {
 		if(hoplatch){
 			if(Random.Range(0, 250) == 0){
-				Sound.volume = 5f;
+				Sound.volume = 90f;
 				Sound.Play();
+				print("squueeeek" + this.name + Time.time);
 				rigidbody.velocity = Vector3.up * jumpstrength;
 				rigidbody.velocity += Vector3.forward * xSpeed;
 				rigidbody.velocity += Vector3.right * zSpeed;

@@ -347,21 +347,23 @@ public class Gen1Script : MonoBehaviour {
 				break;
 			case 14:
 				changeFace("container");
-				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth, "See if you can breed me 2 black bunnies, seven red heterozygous " +
+				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth, "See if you can breed me 2 black bunnies, 4 red heterozygous " +
 																				"bunnies and 3 dominant red bunnies.  You can put them in the " +
 				                                                                "receptacles over there!")));
-				DomReceptacle.show();
-				RecReceptacle.show();
-				HetReceptacle.show();
+				DomReceptacle.enabled = true;
+				RecReceptacle.enabled = true;
+				HetReceptacle.enabled = true;
+
+
 				canInput = true;
 				break;
 			
 			case 15:
 				playerVars.EnableMovement();
 				playerVars.DisableGUI();
-				DomReceptacle.enabled = true;
-				RecReceptacle.enabled = true;
-				HetReceptacle.enabled = true;
+				DomReceptacle.show();
+				RecReceptacle.show();
+				HetReceptacle.show();
 				if(DomReceptacle.goal <= 0 && RecReceptacle.goal <= 0 && HetReceptacle.goal <= 0){
 					changeFace("MossGUI1");
 					playerVars.EnableGUI();
@@ -371,6 +373,7 @@ public class Gen1Script : MonoBehaviour {
 			case 16:
 				yield return StartCoroutine(textScroll(addNewLine(BoxTextWidth,"Thank you.  I'll be sure to put them to good use!")));
 				canInput = true;
+				playerVars.EnableGUI();
 				break;
 			case 17:
 				changeFace("hide");

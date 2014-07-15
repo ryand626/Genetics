@@ -49,7 +49,8 @@ public class geneCrosser : MonoBehaviour {
 			if(P1 == null){
 				P1 = target.gameObject.GetComponent<testDNA>();
 				
-				sphere.HaveOne = false;
+				//sphere.HaveOne = false;
+				playerVars.setHolding(false);
 				sphere.Active = false;
 				sphere.bun = null;
 				
@@ -60,7 +61,8 @@ public class geneCrosser : MonoBehaviour {
 			}else if(P2 == null){
 				P2 = target.gameObject.GetComponent<testDNA>();	
 				
-				sphere.HaveOne = false;
+				//sphere.HaveOne = false;
+				playerVars.setHolding(false);
 				sphere.Active = false;
 				sphere.bun = null;
 				
