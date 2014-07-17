@@ -72,6 +72,7 @@
      <Compile Include="Assets\MyScripts\Interact.cs" />
      <Compile Include="Assets\MyScripts\PlayerCamera.cs" />
      <Compile Include="Assets\MyScripts\PlayerMovement.cs" />
+     <Compile Include="Assets\MyScripts\babyMaker2000.cs" />
      <Compile Include="Assets\MyScripts\firstNav.cs" />
      <Compile Include="Assets\MyScripts\look.cs" />
      <Compile Include="Assets\MyScripts\move.cs" />
@@ -80,6 +81,7 @@
      <Compile Include="Assets\MyScripts\playerVars.cs" />
      <Compile Include="Assets\MyScripts\shadow.cs" />
      <Compile Include="Assets\MyScripts\testText.cs" />
+     <Compile Include="Assets\bunnyHolder.cs" />
      <Compile Include="Assets\bunnyMachine.cs" />
      <Compile Include="Assets\buttonPedestal.cs" />
      <Compile Include="Assets\geneCrosser.cs" />

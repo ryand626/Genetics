@@ -11,9 +11,9 @@ public class playerSpriteAnimation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		anim.SetBool ("moveButtonPressed", Input.GetKey (KeyCode.W) 
-						|| Input.GetKeyDown (KeyCode.A)
-						|| Input.GetKeyDown (KeyCode.S)
-						|| Input.GetKeyDown (KeyCode.D));
+						|| Input.GetKey (KeyCode.A)
+						|| Input.GetKey (KeyCode.S)
+						|| Input.GetKey (KeyCode.D));
 		anim.SetInteger ("direction", playerVars.direction);
 	}
 }

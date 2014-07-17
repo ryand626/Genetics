@@ -1,0 +1,306 @@
+fileFormatVersion: 2
+guid: b1fe48551f56d41c18fb6ea338520453
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: walkSprites_0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 631
+        width: 99
+        height: 385
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_1
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 636
+        width: 97
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_2
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 634
+        width: 94
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_3
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 632
+        width: 96
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_4
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 620
+        width: 121
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_5
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 619
+        width: 121
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_6
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 620
+        width: 120
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_7
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 623
+        width: 39
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_8
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 616
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_9
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 600
+        width: 34
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_10
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 595
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_11
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 605
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_12
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 217
+        width: 97
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_13
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 219
+        width: 94
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_14
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 222
+        width: 95
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_15
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 219
+        width: 95
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_16
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 191
+        width: 120
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_17
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 193
+        width: 119
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_18
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 194
+        width: 120
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_19
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 204
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_20
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 195
+        width: 61
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_21
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 175
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_22
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 169
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_23
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 178
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_24
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 220
+        width: 110
+        height: 378
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walkSprites_25
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 634
+        width: 98
+        height: 383
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
