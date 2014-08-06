@@ -11,7 +11,6 @@ public class consumeBunny : MonoBehaviour {
 	private TextMesh text;
 
 	void Start(){
-		print ("RECEPTICLE PROBLEMS" + this.gameObject.name);
 		this.text = this.transform.FindChild ("Goal").GetComponent<TextMesh> ();
 	}
 

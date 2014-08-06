@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MainMenu.cs" />
      <Compile Include="Assets\MyScripts\Camera Stuff\CameraMovement.cs" />
      <Compile Include="Assets\MyScripts\Camera Stuff\camScript.cs" />
      <Compile Include="Assets\MyScripts\GUI\GUIHide.cs" />
@@ -56,37 +55,40 @@
      <Compile Include="Assets\MyScripts\GUI\readjust.cs" />
      <Compile Include="Assets\MyScripts\GUI\testGui.cs" />
      <Compile Include="Assets\MyScripts\GUI\verticalAlign.cs" />
-     <Compile Include="Assets\MyScripts\Genetics\AddtoMachine.cs" />
-     <Compile Include="Assets\MyScripts\Genetics\Dispenser.cs" />
      <Compile Include="Assets\MyScripts\Genetics\Gen1Script.cs" />
      <Compile Include="Assets\MyScripts\Genetics\GeneScrambler.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\AddtoMachine.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\Dispenser.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\GeneTransfer.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\consumeBunny.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\geneCrosser.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\moodMusic.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\penScript.cs" />
+     <Compile Include="Assets\MyScripts\Genetics\Machines\previewDNA.cs" />
      <Compile Include="Assets\MyScripts\Genetics\MovementControl.cs" />
      <Compile Include="Assets\MyScripts\Genetics\bunny_behavior.cs" />
-     <Compile Include="Assets\MyScripts\Genetics\consumeBunny.cs" />
-     <Compile Include="Assets\MyScripts\Genetics\moodMusic.cs" />
      <Compile Include="Assets\MyScripts\Genetics\mutate.cs" />
-     <Compile Include="Assets\MyScripts\Genetics\penScript.cs" />
      <Compile Include="Assets\MyScripts\Genetics\testCollision.cs" />
      <Compile Include="Assets\MyScripts\Genetics\testDNA.cs" />
      <Compile Include="Assets\MyScripts\Genetics\testGene.cs" />
-     <Compile Include="Assets\MyScripts\Interact.cs" />
-     <Compile Include="Assets\MyScripts\PlayerCamera.cs" />
-     <Compile Include="Assets\MyScripts\PlayerMovement.cs" />
+     <Compile Include="Assets\MyScripts\MainMenu.cs" />
+     <Compile Include="Assets\MyScripts\Player Interaction\Interact.cs" />
+     <Compile Include="Assets\MyScripts\Player Interaction\PlayerCamera.cs" />
+     <Compile Include="Assets\MyScripts\Player Interaction\PlayerMovement.cs" />
+     <Compile Include="Assets\MyScripts\Player Interaction\look.cs" />
+     <Compile Include="Assets\MyScripts\Player Interaction\move.cs" />
+     <Compile Include="Assets\MyScripts\Player Interaction\pickup.cs" />
      <Compile Include="Assets\MyScripts\babyMaker2000.cs" />
+     <Compile Include="Assets\MyScripts\bunnyHolder.cs" />
+     <Compile Include="Assets\MyScripts\bunnyMachine.cs" />
+     <Compile Include="Assets\MyScripts\buttonPedestal.cs" />
      <Compile Include="Assets\MyScripts\firstNav.cs" />
-     <Compile Include="Assets\MyScripts\look.cs" />
-     <Compile Include="Assets\MyScripts\move.cs" />
      <Compile Include="Assets\MyScripts\music.cs" />
-     <Compile Include="Assets\MyScripts\pickup.cs" />
+     <Compile Include="Assets\MyScripts\playerSpriteAnimation.cs" />
      <Compile Include="Assets\MyScripts\playerVars.cs" />
      <Compile Include="Assets\MyScripts\shadow.cs" />
+     <Compile Include="Assets\MyScripts\shimmer.cs" />
      <Compile Include="Assets\MyScripts\testText.cs" />
-     <Compile Include="Assets\bunnyHolder.cs" />
-     <Compile Include="Assets\bunnyMachine.cs" />
-     <Compile Include="Assets\buttonPedestal.cs" />
-     <Compile Include="Assets\geneCrosser.cs" />
-     <Compile Include="Assets\playerSpriteAnimation.cs" />
-     <Compile Include="Assets\shimmer.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

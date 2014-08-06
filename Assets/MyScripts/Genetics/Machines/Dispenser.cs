@@ -11,6 +11,8 @@ public class Dispenser : MonoBehaviour {
 	private PlayerMovement move;
 	private GameObject targetBunny;
 
+	private GameObject displayBunny;
+
 	public buttonPedestal button;
 	
 	void Start () {
@@ -22,7 +24,8 @@ public class Dispenser : MonoBehaviour {
 		DNA.actual = gene;
 		DNA.StartExpress();
 		
-		renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], DNA.express [3]);
+		renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], renderer.material.color.a);
+		makeDisplayBunny ();
 
 	}
 
@@ -31,10 +34,31 @@ public class Dispenser : MonoBehaviour {
 			button.pressed = false;
 			Dispense();
 		}
+		if (displayBunny != null) {
+			displayBunny.transform.position = transform.position;
+			displayBunny.transform.Rotate (new Vector3 (0f, 1f, 0f));
+		}
 	}
-	
+
+	public void makeDisplayBunny(){
+		displayBunny = makeBunny ();
+		displayBunny.GetComponent<testDNA>().tag = "inventory";
+		displayBunny.transform.position = transform.position;
+	}
+
+
 	public void Dispense(){
-		//print ("DISPENSE CALLED");
+		GameObject bunny = makeBunny ();
+		bunny.GetComponent<testDNA>().tag = "inventory";
+		bunny.transform.position = transform.position + Vector3.up * 5;
+		bunny.rigidbody.velocity -= Vector3.forward * 10f;
+		bunny.name = "DNA" + numBunnies;
+		
+		penPals.Add(bunny.GetComponent<testDNA>());
+		numBunnies++;
+	}
+
+	public GameObject makeBunny(){
 		GameObject bunny = (GameObject)Instantiate(Resources.Load("Bunny"));
 		testDNA newDNA = bunny.AddComponent<testDNA>();
 		newDNA.P1 = DNA.P1;
@@ -43,12 +67,7 @@ public class Dispenser : MonoBehaviour {
 		newDNA.basis = DNA.basis;
 		newDNA.StartExpress();
 		newDNA.expressGenes();
-		newDNA.transform.position = transform.position + Vector3.up * 5;
-		newDNA.rigidbody.velocity -= Vector3.forward * 10f;
-		newDNA.name = "DNA" + numBunnies;
 		newDNA.tag = "inventory";
-		
-		penPals.Add(newDNA);
-		numBunnies++;
+		return bunny;
 	}
 }
