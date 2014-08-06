@@ -7,7 +7,7 @@ public class moodMusic : MonoBehaviour {
 	public testDNA P1;
 	public testDNA P2;
 	
-	public List<testDNA> bunnies = new List<testDNA>();
+	//public List<testDNA> bunnies = new List<testDNA>();
 	private testDNA MyDNA;
 	
 	public bool babyTime;
@@ -44,8 +44,9 @@ public class moodMusic : MonoBehaviour {
 			newDNA.expressGenes();
 			
 			newDNA.transform.position = transform.position ;
-			bunnies.Add(newDNA);	
-			bunnies[i].tag = "In Machine";
+		//	bunnies.Add(newDNA);	
+		//	bunnies[i].tag = "In Machine";
+			newDNA.tag = "In Machine";
 		}
 		
 		P1 = null;

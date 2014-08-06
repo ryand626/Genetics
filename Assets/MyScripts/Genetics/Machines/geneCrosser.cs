@@ -3,6 +3,8 @@ using System.Collections;
 
 public class geneCrosser : MonoBehaviour {
 	public bool Locked;
+	public GeneTransfer cable1;
+	public GeneTransfer cable2;
 	public testDNA P1;
 	public testDNA P2;
 	public pickup sphere;
@@ -22,13 +24,28 @@ public class geneCrosser : MonoBehaviour {
 			Locked = true;	
 		}
 		if (Locked) {
+			gameObject.renderer.material.color = new Color(0,1,.2F);
 			if (button.pressed) {
-					button.pressed = false;
-					babyTime ();	
+				button.pressed = false;
+				babyTime ();	
 			}
 		} else {
+			// Pull in parent information
+			if (cable1 != null) {
+				if (cable1.DNA != null){
+					P1 = cable1.DNA;
+				}
+			}
+			if (cable2 != null) {
+				if (cable2.DNA != null){
+					P2 = cable2.DNA;
+				}
+			}
 			button.pressed = false;
 		}
+
+
+
 	}
 	
 	public void babyTime(){
@@ -44,43 +61,41 @@ public class geneCrosser : MonoBehaviour {
 		P2 = null;
 	}
 	
-	void OnTriggerEnter(Collider target){
-		if(target.transform.tag == "inventory"){
-			if(P1 == null){
-				P1 = target.gameObject.GetComponent<testDNA>();
-				
-				//sphere.HaveOne = false;
-				playerVars.setHolding(false);
-				sphere.Active = false;
-				sphere.bun = null;
-				
-				target.transform.tag = "Parent";
-				
-				renderer.material.color = Color.gray;
-				target.rigidbody.velocity = Vector3.zero;
-			}else if(P2 == null){
-				P2 = target.gameObject.GetComponent<testDNA>();	
-				
-				//sphere.HaveOne = false;
-				playerVars.setHolding(false);
-				sphere.Active = false;
-				sphere.bun = null;
-				
-				target.transform.tag = "Parent";
-				target.rigidbody.velocity = Vector3.zero;	
-				
-				renderer.material.color = Color.yellow;
-				
-			}
-		}
-	}
+//	void OnTriggerEnter(Collider target){
+//		if(target.transform.tag == "inventory"){
+//			if(P1 == null){
+//				P1 = target.gameObject.GetComponent<testDNA>();
+//				
+//				// sphere.HaveOne = false;
+//				playerVars.setHolding(false);
+//				sphere.Active = false;
+//				sphere.bun = null;
+//				
+//				target.transform.tag = "Parent";
+//				
+//				renderer.material.color = Color.gray;
+//				target.rigidbody.velocity = Vector3.zero;
+//			}else if(P2 == null){
+//				P2 = target.gameObject.GetComponent<testDNA>();	
+//				
+//				//sphere.HaveOne = false;
+//				playerVars.setHolding(false);
+//				sphere.Active = false;
+//				sphere.bun = null;
+//				
+//				target.transform.tag = "Parent";
+//				target.rigidbody.velocity = Vector3.zero;	
+//				
+//				renderer.material.color = Color.yellow;
+//			}
+//		}
+//	}
 	
 	void OnTriggerStay(Collider target){
 		if(!Locked){
 			if(target.transform.tag == "In Machine"){
 				target.rigidbody.AddForce(Vector3.up * 60f);	
 			}
-			
 		}
 		if(target.transform.tag == "Parent"){
 			target.rigidbody.AddForce(Vector3.up * 60f);	
