@@ -71,6 +71,7 @@
      <Compile Include="Assets\MyScripts\Genetics\testCollision.cs" />
      <Compile Include="Assets\MyScripts\Genetics\testDNA.cs" />
      <Compile Include="Assets\MyScripts\Genetics\testGene.cs" />
+     <Compile Include="Assets\MyScripts\GrowUp.cs" />
      <Compile Include="Assets\MyScripts\MainMenu.cs" />
      <Compile Include="Assets\MyScripts\Player Interaction\Interact.cs" />
      <Compile Include="Assets\MyScripts\Player Interaction\PlayerCamera.cs" />

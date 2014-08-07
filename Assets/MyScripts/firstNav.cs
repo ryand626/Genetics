@@ -24,7 +24,9 @@ public class firstNav : MonoBehaviour {
 			playerVars.atDestination();
 		}
 		if (playerVars.reachedDestination) {
-			agent.Stop();
+			if(agent != null){
+				agent.Stop();
+			}
 		}
 	}
 }

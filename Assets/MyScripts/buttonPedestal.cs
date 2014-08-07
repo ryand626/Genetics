@@ -11,7 +11,7 @@ public class buttonPedestal : MonoBehaviour {
 	void OnTriggerStay(Collider target) {
 		if (target.name == "player") {
 			if(Input.GetKeyDown(KeyCode.Space)){
-				pressed = true;
+				pressed = !pressed;
 			}
 		}
 	}

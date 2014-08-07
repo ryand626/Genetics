@@ -2,10 +2,7 @@
 using System.Collections;
 
 public class previewDNA : MonoBehaviour {
-	// Debug
-	public bool testBool;
-
-	// Bunny inormation
+	// Bunny information
 	public testGene gene;
 	private testDNA DNA;
 	private GameObject displayBunny;
@@ -14,41 +11,34 @@ public class previewDNA : MonoBehaviour {
 	public buttonPedestal button;
 	public GeneTransfer cable;
 
-
-	// Use this for initialization
 	void Start () {
-		testBool = false;
 		makeDisplayBunny ();
 	}
 
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.G)) {
-			print ("boop");
-			testBool = !testBool;
-		}
-
-		// If the player presses the button while there is a bunny inside make it take the bunny in
-//		if (testBool == true && gene != null && displayBunny == null) {
-//			print("Bunny?");
-//			makeDisplayBunny ();
-//		}
-
 		// If the button is pressed, but there is already a bunny inside, eject the bunny and set the color back to the default
-		if (testBool == true && displayBunny != null) {
-			print("no more bunny");
-			displayBunny.rigidbody.velocity = new Vector3(3f,5f,6f);
-			displayBunny = null;
-			gene = null;
-		//	cable.DNA = null;
-			renderer.material.color = new Color(1,1,1,renderer.material.color.a);
-			testBool = false;
+		if (button.pressed == true && displayBunny != null) {
+			eject();
 		}
 
 		// BUNNY!
 		if (displayBunny != null) {
-			displayBunny.transform.position = transform.position;
+			if(DNA == null){
+				DNA = displayBunny.GetComponent<testDNA>();
+				gene = DNA.actual;
+				cable.DNA = DNA;
+			}
+			displayBunny.transform.position = Vector3.Lerp(displayBunny.transform.position, transform.position, .5f);
 			displayBunny.transform.Rotate (new Vector3 (0f, 1f, 0f));
 		}
+	}
+
+	public void eject(){
+		displayBunny = null;
+		gene = null;
+		cable.DNA = null;
+		renderer.material.color = new Color(1,1,1,renderer.material.color.a);
+		button.pressed = false;
 	}
 	
 	public void makeDisplayBunny(){
@@ -61,10 +51,12 @@ public class previewDNA : MonoBehaviour {
 		displayBunny = makeBunny ();
 		displayBunny.GetComponent<testDNA>().tag = "display";
 		displayBunny.transform.position = transform.position;
+		// TODO: this? UHHHHH
 		cable.DNA = DNA;
+	
 
 		renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], renderer.material.color.a);
-		testBool = false;
+		button.pressed = false;
 	}
 
 	public GameObject makeBunny(){
@@ -88,18 +80,18 @@ public class previewDNA : MonoBehaviour {
 //			}
 //		}
 
-		if (target.rigidbody != null && target != displayBunny && !target.rigidbody.isKinematic) {
+		if (displayBunny != null && target.rigidbody != null && target != displayBunny && !target.rigidbody.isKinematic) {
 			target.rigidbody.velocity = -5f * (transform.position - target.transform.position);
 		}
 
-		if (target.tag == "inventory" && displayBunny == null) {
+		if ((target.tag == "inventory" || target.tag == "wild" || target.tag == "display") && displayBunny == null && button.pressed) {
 			displayBunny = target.gameObject;
 			DNA = target.GetComponent<testDNA>();
 			gene = DNA.actual;
 			renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], renderer.material.color.a);
 			displayBunny.tag = "display";
 			cable.DNA = DNA;
-			testBool = false;
+			button.pressed = false;
 
 		}
 

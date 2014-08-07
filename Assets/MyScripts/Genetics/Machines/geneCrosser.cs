@@ -20,8 +20,10 @@ public class geneCrosser : MonoBehaviour {
 	
 	void Update () {
 		transform.Rotate(0,.5f,0);
-		if(P1 != null && P2 != null){
+		if(P1 != null || P2 != null){
 			Locked = true;	
+		}else{
+			Locked = false;
 		}
 		if (Locked) {
 			gameObject.renderer.material.color = new Color(0,1,.2F);
@@ -30,18 +32,23 @@ public class geneCrosser : MonoBehaviour {
 				babyTime ();	
 			}
 		} else {
+			renderer.material.color = startColor;
 			// Pull in parent information
-			if (cable1 != null) {
-				if (cable1.DNA != null){
-					P1 = cable1.DNA;
-				}
-			}
-			if (cable2 != null) {
-				if (cable2.DNA != null){
-					P2 = cable2.DNA;
-				}
-			}
-			button.pressed = false;
+//			if (cable1 != null) {
+//				if (cable1.DNA != null){
+//					//P1 = cable1.DNA;
+//				}else{
+//					P1 = null;
+//				}
+//			}
+//			if (cable2 != null) {
+//				if (cable2.DNA != null){
+//					//P2 = cable2.DNA;
+//				}else{
+//					P2 = null;
+//				}
+//			}
+//			button.pressed = false;
 		}
 
 
@@ -52,13 +59,26 @@ public class geneCrosser : MonoBehaviour {
 		renderer.material.color = startColor;
 		moodMusic genes = gameObject.AddComponent<moodMusic>();
 		genes.bunnyTemplate = (GameObject)Instantiate(Resources.Load("Bunny"));
-		genes.P1 = P1;
-		genes.P2 = P2;
-		genes.ActivateBabyProcess();
+		if(P1 != null){
+			genes.P1 = P1;
+			if(P2 != null){
+				genes.P2 = P2;
+			}else{
+				genes.P2 = P1;
+			}
+			genes.ActivateBabyProcess();
+		}else{
+			if(P2 != null){
+				genes.P1 = P2;
+				genes.P2 = P2;
+				genes.ActivateBabyProcess();
+			}
+		}
+
 		Destroy(genes);
 		Locked = false;
-		P1 = null;
-		P2 = null;
+	//	P1 = null;
+//		P2 = null;
 	}
 	
 //	void OnTriggerEnter(Collider target){

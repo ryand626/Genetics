@@ -47,6 +47,7 @@ public class moodMusic : MonoBehaviour {
 		//	bunnies.Add(newDNA);	
 		//	bunnies[i].tag = "In Machine";
 			newDNA.tag = "In Machine";
+			newDNA.gameObject.AddComponent<GrowUp>();
 		}
 		
 		P1 = null;
