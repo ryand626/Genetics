@@ -51,8 +51,7 @@ public class previewDNA : MonoBehaviour {
 		displayBunny = makeBunny ();
 		displayBunny.GetComponent<testDNA>().tag = "display";
 		displayBunny.transform.position = transform.position;
-		// TODO: this? UHHHHH
-		cable.DNA = DNA;
+
 	
 
 		renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], renderer.material.color.a);
@@ -74,16 +73,11 @@ public class previewDNA : MonoBehaviour {
 
 	// put bunny in -> press button -> it grabs the gene information 
 	void OnTriggerStay(Collider target){
-//		if (displayBunny == null) {
-//			if (target.gameObject.GetComponent<testDNA> () != null) {
-//				gene = target.gameObject.GetComponent <testDNA> ().actual;
-//			}
-//		}
-
+		// Push out anything when a bunny is inside already
 		if (displayBunny != null && target.rigidbody != null && target != displayBunny && !target.rigidbody.isKinematic) {
 			target.rigidbody.velocity = -5f * (transform.position - target.transform.position);
 		}
-
+		// Add bunny when button pressed and the target inside is a bunny (in the inventory, being displayed, or wild)
 		if ((target.tag == "inventory" || target.tag == "wild" || target.tag == "display") && displayBunny == null && button.pressed) {
 			displayBunny = target.gameObject;
 			DNA = target.GetComponent<testDNA>();
@@ -93,6 +87,11 @@ public class previewDNA : MonoBehaviour {
 			cable.DNA = DNA;
 			button.pressed = false;
 
+		}
+		if(button.pressed == false){
+			if(target.tag == "display"){
+				target.tag = "wild";
+			}
 		}
 
 	}

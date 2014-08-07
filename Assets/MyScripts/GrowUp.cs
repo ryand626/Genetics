@@ -11,7 +11,7 @@ public class GrowUp : MonoBehaviour {
 	}
 
 	void Update () {
-		transform.localScale = Vector3.Lerp (originalScale * .5f, originalScale, steps * .001f);
+		transform.localScale = Vector3.Lerp (originalScale * .5f, originalScale, Mathf.Log( steps * .001f));
 		steps++;
 
 		if (transform.localScale == originalScale) {
