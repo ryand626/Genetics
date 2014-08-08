@@ -6,6 +6,8 @@ public class MovementControl : MonoBehaviour {
 	private int direction;
 	private Transform sphere;
 
+	public NavMeshAgent agent;
+
 	void Awake () {
 		sphere = transform.FindChild("player Sprite").FindChild ("Interact Sphere");
 		direction = playerVars.direction;
@@ -30,18 +32,22 @@ public class MovementControl : MonoBehaviour {
 			direction = playerVars.direction;
 		}
 		if(Input.GetKey(KeyCode.W)){
+			agent.Stop();
 			transform.Translate(Vector3.forward * Time.smoothDeltaTime * PlayerSpeed,Space.World);
 			playerVars.setDirection(0);
 		}
 		if(Input.GetKey(KeyCode.S)){
+			agent.Stop();
 			transform.Translate(-Vector3.forward * Time.smoothDeltaTime * PlayerSpeed, Space.World);
 			playerVars.setDirection(3);
 		}
 		if(Input.GetKey(KeyCode.A)){
+			agent.Stop();
 			transform.Translate(Vector3.left * Time.smoothDeltaTime * PlayerSpeed, Space.World);
 			playerVars.setDirection(2);
 		}
 		if(Input.GetKey(KeyCode.D)){
+			agent.Stop();
 			transform.Translate(-Vector3.left * Time.smoothDeltaTime * PlayerSpeed,Space.World);
 			playerVars.setDirection(1);
 		}

@@ -12,7 +12,6 @@ public class firstNav : MonoBehaviour {
 	// Update is called once per frame
 	public void go () {
 		agent.SetDestination(target.position);
-	
 	}
 
 	public void stop(){
@@ -20,13 +19,19 @@ public class firstNav : MonoBehaviour {
 	}
 
 	void Update(){
-		if(Vector3.Distance(transform.position,target.position)<.86f){
-			playerVars.atDestination();
-		}
-		if (playerVars.reachedDestination) {
-			if(agent != null){
-				agent.Stop();
-			}
+        // Old Way of stopping navigation
+//		if(Vector3.Distance(transform.position,target.position)<.86f){
+//			playerVars.atDestination();
+//		}
+//		if (playerVars.reachedDestination) {
+//			if(agent != null){
+//				agent.Stop();
+//			}
+//		}
+
+		// Better way of stopping navigation upon destination being reached
+		if (agent.remainingDistance == 0) {
+			agent.Stop();
 		}
 	}
 }
