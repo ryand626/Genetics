@@ -73,6 +73,8 @@
      <Compile Include="Assets\MyScripts\Genetics\testGene.cs" />
      <Compile Include="Assets\MyScripts\GrowUp.cs" />
      <Compile Include="Assets\MyScripts\MainMenu.cs" />
+     <Compile Include="Assets\MyScripts\Navigation\navToPoint.cs" />
+     <Compile Include="Assets\MyScripts\Navigation\point.cs" />
      <Compile Include="Assets\MyScripts\Player Interaction\Interact.cs" />
      <Compile Include="Assets\MyScripts\Player Interaction\PlayerCamera.cs" />
      <Compile Include="Assets\MyScripts\Player Interaction\PlayerMovement.cs" />

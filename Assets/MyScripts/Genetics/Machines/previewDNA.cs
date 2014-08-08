@@ -42,7 +42,7 @@ public class previewDNA : MonoBehaviour {
 	}
 	
 	public void makeDisplayBunny(){
-//		GameObject tempGame = new GameObject();
+		// TODO: find different way of doing this.....
 		DNA = new testDNA();
 		
 		DNA.P1 = gene;
@@ -52,8 +52,6 @@ public class previewDNA : MonoBehaviour {
 		displayBunny = makeBunny ();
 		displayBunny.GetComponent<testDNA>().tag = "display";
 		displayBunny.transform.position = transform.position;
-
-	
 
 		renderer.material.color = new Color(DNA.express [4], DNA.express [1], DNA.express [2], renderer.material.color.a);
 		button.pressed = false;

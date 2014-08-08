@@ -3,13 +3,11 @@ using System.Collections;
 
 public class pickup : MonoBehaviour {
 	//Capture Bool
-	//public bool HaveOne;
+
 	public bool Active;
-	//public Collider bun;
 	public GameObject bun;
 	
 	void Start(){
-
 		Active = false;
 	}
 	
@@ -20,7 +18,6 @@ public class pickup : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.Space)){
 			if(Active){
-
 				Active = false;
 				playerVars.setHolding(false);
 				bun = null;
@@ -76,6 +73,7 @@ public class pickup : MonoBehaviour {
 		}
 		// If the bunny is already in your inventory
 		if(target.tag == "inventory"){
+			target.rigidbody.velocity = Vector3.zero;
 
 			//target.transform.position = transform.position;
 			// Scramble its DNA
@@ -106,7 +104,6 @@ public class pickup : MonoBehaviour {
 	void OnTriggerExit(Collider target){
 		if(target.tag == "inventory"){
 			target.tag = "wild";
-			target.rigidbody.velocity = Vector3.zero;
 			//HaveOne = false;
 			playerVars.setHolding(false);
 			//bun = null;
