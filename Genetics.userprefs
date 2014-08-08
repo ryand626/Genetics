@@ -2,11 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MyScripts/Genetics/Machines/previewDNA.cs">
     <Files>
-      <File FileName="Assets/MyScripts/Genetics/Machines/previewDNA.cs" Line="31" Column="106" />
-      <File FileName="Assets/MyScripts/Genetics/Machines/geneCrosser.cs" Line="35" Column="41" />
-      <File FileName="Assets/MyScripts/Genetics/Machines/GeneTransfer.cs" Line="20" Column="27" />
-      <File FileName="Assets/MyScripts/Genetics/Machines/moodMusic.cs" Line="49" Column="30" />
-      <File FileName="Assets/MyScripts/buttonPedestal.cs" Line="14" Column="23" />
+      <File FileName="Assets/MyScripts/Genetics/Machines/previewDNA.cs" Line="45" Column="1" />
+      <File FileName="Assets/MyScripts/Genetics/Machines/geneCrosser.cs" Line="1" Column="1" />
+      <File FileName="Assets/MyScripts/Genetics/Machines/GeneTransfer.cs" Line="1" Column="1" />
+      <File FileName="Assets/MyScripts/Genetics/Machines/moodMusic.cs" Line="1" Column="1" />
+      <File FileName="Assets/MyScripts/buttonPedestal.cs" Line="1" Column="1" />
+      <File FileName="Assets/MyScripts/GrowUp.cs" Line="1" Column="1" />
+      <File FileName="Assets/MyScripts/Genetics/bunny_behavior.cs" Line="1" Column="1" />
+      <File FileName="Assets/MyScripts/Genetics/MovementControl.cs" Line="14" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -42,6 +42,7 @@ public class previewDNA : MonoBehaviour {
 	}
 	
 	public void makeDisplayBunny(){
+//		GameObject tempGame = new GameObject();
 		DNA = new testDNA();
 		
 		DNA.P1 = gene;
